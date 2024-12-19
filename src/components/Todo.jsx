@@ -9,13 +9,14 @@ function Todo({ status, id, title }) {
 
     try {
       // Make a PATCH request to update the status in the database
-      const response = await fetch(`http://localhost:3000/todos/${id}`, {
+      const response = await fetch(`http://localhost:3000/todos/?id=${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          completed:true, // toggle the status
+         title:"hi",
+        completed:true, // toggle the status
         }),
       });
 

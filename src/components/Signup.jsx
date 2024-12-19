@@ -1,35 +1,165 @@
-import React from "react"
+import React, { useState, useReducer } from "react"
+import { useNavigate } from "react-router-dom";
 
+
+// הגדרת פעולות שיכולות לקרות בטופס
+const initialState = {
+    isSignedUp: false,
+    name: "",
+    email: "",
+    city: "",
+    suite: "",
+    street: "",
+    zipcode: "",
+    latitude: "",
+    longitude: "",
+    phone: "",
+    website: "",
+    companyName: "",
+    catchPhrase: "",
+    bs: ""
+};
+
+// פעולה לעדכון שדה
+const formReducer = (state, action) => {
+    switch (action.type) {
+        case "SET_FIELD":
+            return { ...state, [action.field]: action.value };
+        case "SIGN_UP":
+            return { ...state, isSignedUp: true };
+        default:
+            return state;
+    }
+};
 function Signup() {
-    let succsessfulSignUP = false;
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [verifyPassword, setverifyPassword] = useState('');
+    const [succsessfulSignUP, setSuccessfulSignUp] = useState(false);
+    const [state, dispatch] = useReducer(formReducer, initialState);
+    const navigate = useNavigate();
+    async function startSignUp() {
+        if (password === verifyPassword) {
+            let response = await fetch(`http://localhost:3000/users/?website=${password}`);  // Make sure the endpoint matches your API
+            if (response.status >= 200 && response.status < 300) {
+                let jsonRes = await response.json();
+                if (jsonRes.length == 0) { setSuccessfulSignUp(true); }
+                else {
+                    alert('User already exists');
+                }
+            }
+        }
+        else alert('the two password fields arent equal')
+    }
+    async function addUser() {
+        const createUser = {
+            username: username,
+            name: state.name,
+            email: state.email,
+            address: {
+                city: state.city,
+                suite: state.suite,
+                street: state.street,
+                zipcode: state.zipcode,
+            geo: {
+                lat: state.latitude,
+                lng: state.longitude
+            }
+        },
+            phone: state.phone,
+            website: password,
+            company: {
+                name: state.companyName,
+                catchPhrase: state.catchPhrase,
+                bs: state.bs
+            }
+        };
+
+        try {
+            const response = await fetch("http://localhost:3000/users", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(createUser),
+            });
+            if (response.ok) {
+                let createdUser = await response.json();
+                navigate(`/users/${createdUser.id}`); //dost navigate to the right place
+            }
+
+        }
+        catch (ex) {
+
+        }
+    }
     return (
         <>
             {!succsessfulSignUP &&
                 <div>
-                    <input name="username" placeholder="userName" />
-                    <input name="password" placeholder="password" />
-                    <input name="verifyPassword" placeholder="password" />
+                    <input name="username" placeholder="userName" onChange={(e) => setUsername(e.target.value)} />
+                    <input name="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
+                    <input name="verifyPassword" placeholder="password" onChange={(e) => setverifyPassword(e.target.value)} />
+                    <button type="button" onClick={startSignUp}>submit</button>
                 </div>}
             {
                 succsessfulSignUP &&
                 <div>
-                    <input name="name" pattern="name" />
-                    <input name="email" pattern="email" />
+                    <input name="name" placeholder="name" value={state.name}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "name", value: e.target.value })
+                        } />
+                    <input name="email" placeholder="email" value={state.email}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "email", value: e.target.value })
+                        } />
                     <label >address:</label>
-                    <input name="city" pattern="city" />
-                    <input name="suite" pattern="suite" />
-                    <input name="street" pattern="street" />
-                    <input name="zipcode" pattern="zipcode" />
+                    <input name="city" placeholder="city" value={state.city}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "city", value: e.target.value })
+                        } />
+                    <input name="suite" placeholder="suite" value={state.suite}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "suite", value: e.target.value })
+                        } />
+                    <input name="street" placeholder="street" value={state.street}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "street", value: e.target.value })
+                        } />
+                    <input name="zipcode" placeholder="zipcode" value={state.zipcode}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "zipcode", value: e.target.value })
+                        } />
                     <label>Geo:</label>
-                    <input name="latitude" pattern="latitude" />
-                    <input name="longitude" pattern="longitude" />
-                    <input name="phone" pattern="phone" />
-                    <input name="website" pattern="website" />
+                    <input name="latitude" placeholder="latitude" value={state.latitude}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "latitude", value: e.target.value })
+                        } />
+                    <input name="longitude" placeholder="longitude" value={state.longitude}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "longitude", value: e.target.value })
+                        } />
+                    <input name="phone" placeholder="phone" value={state.phone}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "phone", value: e.target.value })
+                        } />
+                    {/* <input name="website" placeholder="website" value={state.website}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "website", value: e.target.value })
+                        } /> */}
                     <label>company</label>
-                    <input name="companyname" pattern="company name" />
-                    <input name="catchPhrase" pattern="compcatchPhraseany" />
-                    <input name="bs" pattern="bs" />
-
+                    <input name="companyname" placeholder="company name" value={state.companyName}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "companyName", value: e.target.value })
+                        } />
+                    <input name="catchPhrase" placeholder="catchPhrase" value={state.catchPhrase}
+                        onChange={(e) =>
+                            dispatch({ type: "SET_FIELD", field: "chachePhrase", value: e.target.value })
+                        } />
+                    <input name="bs" placeholder="bs" value={state.bs} onChange={(e) =>
+                        dispatch({ type: "SET_FIELD", field: "bs", value: e.target.value })
+                    } />
+                    <button type="button" onClick={addUser}>submit</button>
                 </div>
             }
         </>
