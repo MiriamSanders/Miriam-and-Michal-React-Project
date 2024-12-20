@@ -1,47 +1,45 @@
 import React, { useState } from "react";
-
+import '../css/todo.css'
 function Todo({ status, id, title }) {
-  const [checked, setChecked] = useState(status);
+   const [checked, setChecked] = useState(status);
 
-  const handleCheckboxChange = async () => {
-    // Toggle the checkbox state locally
-    setChecked(!checked);
+   const handleCheckboxChange = async () => {
+      setChecked(!checked);
 
-    try {
-      // Make a PATCH request to update the status in the database
-      const response = await fetch(`http://localhost:3000/todos/?id=${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-         title:"hi",
-        completed:true, // toggle the status
-        }),
-      });
+      try {
+         const response = await fetch(`http://localhost:3000/todos/${id}`, {
+            method: 'PATCH',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+               completed: !checked, 
+            }),
+         });
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+         if (!response.ok) {
+            throw new Error("Network response was not ok");
+         }
+
+         const result = await response.json();
+         console.log('Update successful:', result);
+      } catch (error) {
+         console.error('Error updating todo:', error.message);
       }
+   };
 
-      const result = await response.json();
-      console.log('Update successful:', result);
-    } catch (error) {
-      console.error('Error updating todo:', error.message);
-    }
-  };
-
-  return (
-    <div>
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={handleCheckboxChange} 
-      />
-      <p>{id}</p>
-      <p>{title}</p>
-    </div>
-  );
+   return (
+      <div className="todo-container">
+         <input
+            type="checkbox"
+            checked={checked}
+            onChange={handleCheckboxChange}
+            className="todo-checkbox"
+         />
+         <p className="todo-id">{id}</p>
+         <p className={`todo-title ${checked ? 'completed' : ''}`}>{title}</p>
+      </div>
+   );
 }
 
 export default Todo;

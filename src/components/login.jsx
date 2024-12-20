@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";  // To handle navigation
-
+import '../css/login.css'
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -22,19 +22,21 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className="login-container">
             <input 
                 name="username" 
                 placeholder="Username" 
+                 className="login-input"
                 onChange={(e) => setUsername(e.target.value)}  // Corrected to e.target.value
             />
             <input 
                 name="password" 
                 type="password"
                 placeholder="Password" 
+                 className="login-input"
                 onChange={(e) => setPassword(e.target.value)}  // Corrected to e.target.value
             />
-            <button onClick={checkIFUserExists}>Login</button>
+            <button  className="login-button" onClick={checkIFUserExists}>Login</button>
         </div>
     );
 }

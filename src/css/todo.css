@@ -1,0 +1,38 @@
+.todo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.todo-container:hover {
+    background-color: #f9f9f9;
+}
+
+.todo-checkbox {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.todo-id {
+    font-weight: bold;
+    color: #555;
+    width: 40px;
+}
+
+.todo-title {
+    flex-grow: 1;
+    color: #333;
+    font-size: 1rem;
+    word-break: break-word;
+}
+
+.todo-title.completed {
+    text-decoration: line-through;
+    color: #999;
+}

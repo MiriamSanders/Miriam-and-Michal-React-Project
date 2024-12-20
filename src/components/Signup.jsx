@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from "react"
 import { useNavigate } from "react-router-dom";
-
+import '../css/login.css'
 
 // הגדרת פעולות שיכולות לקרות בטופס
 const initialState = {
@@ -96,50 +96,50 @@ function Signup() {
     return (
         <>
             {!succsessfulSignUP &&
-                <div>
-                    <input name="username" placeholder="userName" onChange={(e) => setUsername(e.target.value)} />
-                    <input name="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
-                    <input name="verifyPassword" placeholder="password" onChange={(e) => setverifyPassword(e.target.value)} />
-                    <button type="button" onClick={startSignUp}>submit</button>
+                <div className="login-container">
+                    <input name="username" placeholder="userName"  className="login-input" onChange={(e) => setUsername(e.target.value)} />
+                    <input name="password" placeholder="password"  className="login-input" onChange={(e) => setPassword(e.target.value)} />
+                    <input name="verifyPassword" placeholder="password"   className="login-input" onChange={(e) => setverifyPassword(e.target.value)} />
+                    <button type="button" className="login-button" onClick={startSignUp}>submit</button>
                 </div>}
             {
                 succsessfulSignUP &&
-                <div>
-                    <input name="name" placeholder="name" value={state.name}
+                <div className="login-container">
+                    <input name="name" placeholder="name"  className="login-input" value={state.name}
                         onChange={(e) =>
                             dispatch({ type: "SET_FIELD", field: "name", value: e.target.value })
                         } />
-                    <input name="email" placeholder="email" value={state.email}
+                    <input name="email" placeholder="email"  className="login-input" value={state.email}
                         onChange={(e) =>
                             dispatch({ type: "SET_FIELD", field: "email", value: e.target.value })
                         } />
                     <label >address:</label>
-                    <input name="city" placeholder="city" value={state.city}
+                    <input name="city" placeholder="city"  className="login-input" value={state.city}
                         onChange={(e) =>
-                            dispatch({ type: "SET_FIELD", field: "city", value: e.target.value })
+                            dispatch({ type: "SET_FIELD",  field: "city", value: e.target.value })
                         } />
-                    <input name="suite" placeholder="suite" value={state.suite}
+                    <input name="suite" placeholder="suite"   className="login-input" value={state.suite}
                         onChange={(e) =>
                             dispatch({ type: "SET_FIELD", field: "suite", value: e.target.value })
                         } />
-                    <input name="street" placeholder="street" value={state.street}
+                    <input name="street" placeholder="street"  className="login-input" value={state.street}
                         onChange={(e) =>
                             dispatch({ type: "SET_FIELD", field: "street", value: e.target.value })
                         } />
-                    <input name="zipcode" placeholder="zipcode" value={state.zipcode}
+                    <input name="zipcode" placeholder="zipcode"  className="login-input" value={state.zipcode}
                         onChange={(e) =>
                             dispatch({ type: "SET_FIELD", field: "zipcode", value: e.target.value })
                         } />
                     <label>Geo:</label>
-                    <input name="latitude" placeholder="latitude" value={state.latitude}
+                    <input name="latitude" placeholder="latitude"  className="login-input" value={state.latitude}
                         onChange={(e) =>
                             dispatch({ type: "SET_FIELD", field: "latitude", value: e.target.value })
                         } />
-                    <input name="longitude" placeholder="longitude" value={state.longitude}
+                    <input name="longitude" placeholder="longitude"  className="login-input" value={state.longitude}
                         onChange={(e) =>
                             dispatch({ type: "SET_FIELD", field: "longitude", value: e.target.value })
                         } />
-                    <input name="phone" placeholder="phone" value={state.phone}
+                    <input name="phone" placeholder="phone"  className="login-input" value={state.phone}
                         onChange={(e) =>
                             dispatch({ type: "SET_FIELD", field: "phone", value: e.target.value })
                         } />
@@ -148,18 +148,18 @@ function Signup() {
                             dispatch({ type: "SET_FIELD", field: "website", value: e.target.value })
                         } /> */}
                     <label>company</label>
-                    <input name="companyname" placeholder="company name" value={state.companyName}
+                    <input name="companyname" placeholder="company name"  className="login-input" value={state.companyName}
                         onChange={(e) =>
                             dispatch({ type: "SET_FIELD", field: "companyName", value: e.target.value })
                         } />
-                    <input name="catchPhrase" placeholder="catchPhrase" value={state.catchPhrase}
+                    <input name="catchPhrase" placeholder="catchPhrase"  className="login-input" value={state.catchPhrase}
                         onChange={(e) =>
                             dispatch({ type: "SET_FIELD", field: "chachePhrase", value: e.target.value })
                         } />
-                    <input name="bs" placeholder="bs" value={state.bs} onChange={(e) =>
+                    <input name="bs" placeholder="bs"   className="login-input" value={state.bs}  onChange={(e) =>
                         dispatch({ type: "SET_FIELD", field: "bs", value: e.target.value })
                     } />
-                    <button type="button" onClick={addUser}>submit</button>
+                    <button className="login-button" type="button" onClick={addUser}>submit</button>
                 </div>
             }
         </>
