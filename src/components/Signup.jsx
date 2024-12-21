@@ -4,7 +4,7 @@ import '../css/login.css'
 
 // הגדרת פעולות שיכולות לקרות בטופס
 const initialState = {
-    isSignedUp: false,
+    // isSignedUp: false,
     name: "",
     email: "",
     city: "",
@@ -25,8 +25,8 @@ const formReducer = (state, action) => {
     switch (action.type) {
         case "SET_FIELD":
             return { ...state, [action.field]: action.value };
-        case "SIGN_UP":
-            return { ...state, isSignedUp: true };
+        // case "SIGN_UP":
+        //     return { ...state, isSignedUp: true };
         default:
             return state;
     }
