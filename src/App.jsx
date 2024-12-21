@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes,Navigate, Route, Link } from "react-router-dom";
 import Login from "./components/login";
 import Signup from './components/Signup';
 import UserPage from './components/UserPage';
@@ -13,7 +13,8 @@ function App() {
         <Link to="/login">Login</Link>
         <Link to="/signup">SignUp</Link>
       </nav>
-      <Routes>
+      <Routes >
+      <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/users/:id/*' element={<UserPage />}>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-
+import '../css/userData.css'
 function UserData({ id }) {
   const [user, setUser] = useState(null);  // אובייקט שמכיל את המידע על המשתמש
   const [error, setError] = useState(null);  // משתנה לשמירת שגיאות
   const [loading, setLoading] = useState(true);  // משתנה לניהול מצב טעינה
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {

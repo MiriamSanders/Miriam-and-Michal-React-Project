@@ -1,21 +1,27 @@
-import React ,{useState}from "react"
+import React, { useState } from "react";
+import '../css/post.css'; 
 
 function Post({ id, itemTitle, postData }) {
-    const [ showPost,setShowPost] = useState(false);
-    return (
-        <>{!showPost && <div>
-            <p>{id}</p>
-            <p>{itemTitle}</p>
-            <button onClick={()=>{setShowPost(!showPost)}}>show post</button>
+  const [showPost, setShowPost] = useState(false);
+
+  return (
+    <>
+      {!showPost && (
+        <div className="postContainer">
+          <p>{id}</p>
+          <p>{itemTitle}</p>
+          <button onClick={() => setShowPost(!showPost)}>Show Post</button>
         </div>
-        }
-            {showPost && <div>
-                <h6 className="postTitle">{itemTitle}</h6>
-                <p className="postData">{postData}</p>
-                <button>show comments</button>
-            </div>
-            }
-        </>
-    )
+      )}
+      {showPost && (
+        <div className="postContainer">
+          <h6 className="postTitle">{itemTitle}</h6>
+          <p className="postData">{postData}</p>
+          <button>Show Comments</button>
+        </div>
+      )}
+    </>
+  );
 }
+
 export default Post;
