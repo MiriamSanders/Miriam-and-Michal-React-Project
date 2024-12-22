@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import '../css/userData.css'
 function UserData({ id }) {
-  const [user, setUser] = useState(null);  // אובייקט שמכיל את המידע על המשתמש
-  const [error, setError] = useState(null);  // משתנה לשמירת שגיאות
-  const [loading, setLoading] = useState(true);  // משתנה לניהול מצב טעינה
+  const [user, setUser] = useState(null); 
+  const [error, setError] = useState(null); 
+  const [loading, setLoading] = useState(true);  
  
   useEffect(() => {
     const fetchData = async () => {
@@ -51,7 +51,7 @@ function UserData({ id }) {
       <p><strong>Longitude:</strong> {user.address.geo.lng}</p>
       <h2>Phone & Website</h2>
       <p><strong>Phone:</strong> {user.phone}</p>
-      <p><strong>Website:</strong> <a href={`https://${user.website}`} target="_blank" rel="noopener noreferrer">{user.website}</a></p>
+      <p><strong>Website:</strong>{user.website}</p>
       <h2>Company</h2>
       <p><strong>Company Name:</strong> {user.company.name}</p>
       <p><strong>Catchphrase:</strong> {user.company.catchPhrase}</p>

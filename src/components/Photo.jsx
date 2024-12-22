@@ -1,7 +1,8 @@
 import React from "react"
 
-function Photo()
+function Photo({thumbnailUrl})
 {
-
+    return <img src={thumbnailUrl}></img> 
+    
 }
 export default Photo;
