@@ -275,52 +275,6 @@
         "catchPhrase": "",
         "bs": ""
       }
-    },
-    {
-      "id": "be59",
-      "username": "sdsds",
-      "name": "",
-      "email": "",
-      "address": {
-        "city": "",
-        "suite": "",
-        "street": "",
-        "zipcode": "",
-        "geo": {
-          "lat": "",
-          "lng": ""
-        }
-      },
-      "phone": "",
-      "website": "aaaaa",
-      "company": {
-        "name": "",
-        "catchPhrase": "",
-        "bs": ""
-      }
-    },
-    {
-      "id": "9439",
-      "username": "dsgd",
-      "name": "",
-      "email": "",
-      "address": {
-        "city": "",
-        "suite": "",
-        "street": "",
-        "zipcode": "",
-        "geo": {
-          "lat": "",
-          "lng": ""
-        }
-      },
-      "phone": "",
-      "website": "q",
-      "company": {
-        "name": "",
-        "catchPhrase": "",
-        "bs": ""
-      }
     }
   ],
   "todos": [
