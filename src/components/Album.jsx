@@ -1,41 +1,44 @@
 import React, { useState } from "react";
-import "../css/album.css"; // Import the CSS file
+import "../css/album.css"; 
 import { FaPen, FaTrash } from "react-icons/fa";
 import Photo from "./Photo";
-
-function Album({ id, itemTitle }) {
+import Update from "./Update";
+import Delete from "./Delete";
+//update albums, erase
+function Album({ album }) {
     const [photos, setPhotos] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [photoPage, setPhotoPage] = useState(1);
-    async function openAlbumPhotos() {
-        setLoading(true); // מצב טעינה
-        setError(null); // איפוס שגיאות ישנות
+    async function openAlbumPhotos(){
+        setLoading(true);
+        setError(null); 
         try {
-            const response = await fetch(`http://localhost:3000/photos/?albumId=${id}&_page=${photoPage}`);
+            const response = await fetch(`http://localhost:3000/photos/?albumId=${album.id}&_page=${photoPage}`);
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
             const result = await response.json();
             if (result) {
-                setPhotos(result.data); // שמירת התמונות בסטייט
+                setPhotos(result.data);
             } else {
                 throw new Error("No photos in the album");
             }
         } catch (err) {
-            setError(err.message); // שמירת הודעת השגיאה
+            setError(err.message);
         } finally {
-            setLoading(false); // סיום טעינה
+            setLoading(false); 
             setPhotoPage((prevPhotoPage) => prevPhotoPage + 1);
         }
     }
 
     return (
         <div className="albumContainer">
-            <p className="albumId">{id}</p>
-            <p className="albumTitle">{itemTitle}</p>
-            <FaPen />
-            <FaTrash />
+            <p className="albumId">{album.id}</p>
+            <p className="albumTitle">{album.title}</p>
+           <Update item={album} type='albums'/>
+            <Delete id={album.id} type='albums'/>
+            
             <button onClick={openAlbumPhotos} disabled={loading}>
                 {loading ? "Loading..." : "Load More Photos"}
             </button>
@@ -44,7 +47,7 @@ function Album({ id, itemTitle }) {
 
             <div className="photoContainer">
                 {photos.map((item) => {
-                    return <Photo key={item.id} thumbnailUrl={item.thumbnailUrl} />
+                    return <Photo key={item.id} photo={item} />
                 })}
             </div>
         </div>

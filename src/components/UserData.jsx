@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import '../css/userData.css'
+import Update from "./Update";
 function UserData({ id }) {
   const [user, setUser] = useState(null); 
   const [error, setError] = useState(null); 
   const [loading, setLoading] = useState(true);  
- 
+ //update,delete
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -56,6 +57,7 @@ function UserData({ id }) {
       <p><strong>Company Name:</strong> {user.company.name}</p>
       <p><strong>Catchphrase:</strong> {user.company.catchPhrase}</p>
       <p><strong>BS:</strong> {user.company.bs}</p>
+      <Update item={user} type='users'></Update>
     </div>
   );
 }

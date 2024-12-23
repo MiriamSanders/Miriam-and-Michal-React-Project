@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from "react"
 import { useNavigate } from "react-router-dom";
 import '../css/login.css'
-
+//check inputs- mybe useForm?
 // הגדרת פעולות שיכולות לקרות בטופס
 const initialState = {
     // isSignedUp: false,

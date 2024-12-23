@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import Post from "./Post"
 import Todo from "./Todo"
 import Album from "./Album"
+//display add
 function GenaralDisplay({ id, typeOfItem }) {
   const [items, setItems] = useState(null);
   const [error, setError] = useState(null);
@@ -40,13 +41,13 @@ function GenaralDisplay({ id, typeOfItem }) {
       {items.map((item) => (
         <div key={item.id}>
           {typeOfItem === "posts" && (
-            <Post key={item.id} id={item.id} itemTitle={item.title} postData={item.body} />
+            <Post post={item} />
           )}
           {typeOfItem === "todos" && (
-            <Todo status={item.completed} id={item.id} title={item.title} />
+            <Todo status={item.completed}  id={item.id} title={item.title} />
           )}
           {typeOfItem === "albums" && (
-            <Album key={item.id} id={item.id} itemTitle={item.title} />
+            <Album  album={item} />
           )}
         </div>
       ))}

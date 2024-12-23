@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { FaPen, FaTrash } from "react-icons/fa";
 import '../css/todo.css'
+import Update from "./Update";
+import Delete from "./Delete";
+//update,delete
 function Todo({ status, id, title }) {
    const [checked, setChecked] = useState(status);
 
@@ -39,8 +42,8 @@ function Todo({ status, id, title }) {
          />
          <p className="todo-id">{id}</p>
          <p className={`todo-title ${checked ? 'completed' : ''}`}>{title}</p>
-         <FaPen/>
-         <FaTrash/>
+     <Update item={{id:id,title:title}} type='todos'/>
+        <Delete id={id} type='todos'/>
       </div>
    );
 }

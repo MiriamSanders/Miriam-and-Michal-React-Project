@@ -1,8 +1,13 @@
 import React from "react"
-
-function Photo({thumbnailUrl})
+import Update from "./Update";
+import Delete from "./Delete";
+//update,delete
+function Photo({photo})
 {
-    return <img src={thumbnailUrl}></img> 
+    return (<div><img src={photo.thumbnailUrl}></img>
+    <Update item={photo} type='photos'/>
+    <Delete id={photo.id} type='photos'/>
+    </div> )
     
 }
 export default Photo;
