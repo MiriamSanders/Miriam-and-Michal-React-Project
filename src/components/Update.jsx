@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaPen } from "react-icons/fa";
+import { DisplayContext } from "../components/GeneralDisplay";
 
 function Update({ item, type }) {
+    const { updateDisplay } = useContext(DisplayContext);
     const [showUpdateDetails, setShowUpdateDetails] = useState(false);
     const [updatedItem, setUpdatedItem] = useState(item); // Create a copy of the item for editing
 
@@ -13,19 +15,29 @@ function Update({ item, type }) {
     };
     async function updateItem() {
         const updatedData = { ...item, ...updatedItem };
-        let response = await fetch(`http://localhost:3000/${type}/${item.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify( updatedData),
-        });
+        try {
+            let response = await fetch(`http://localhost:3000/${type}/${item.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedData),
+            });
+            if (response.ok) {
+                updateDisplay(updatedData)
+            }
+        }
+        catch (ex) {
+            console.log(ex);
+
+        }
+
     }
     return (
         <>
             <FaPen onClick={() => setShowUpdateDetails(true)} />
             {showUpdateDetails && <div>
-                {Object.keys(updatedItem).map((key) => (
+                {Object.keys(updatedItem).map((key) => ((key != 'id' && key != 'userId') &&
                     <div key={key}>
                         <input
                             value={updatedItem[key]}

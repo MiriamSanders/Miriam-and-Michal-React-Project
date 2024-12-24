@@ -57,7 +57,6 @@ function UserData({ id }) {
       <p><strong>Company Name:</strong> {user.company.name}</p>
       <p><strong>Catchphrase:</strong> {user.company.catchPhrase}</p>
       <p><strong>BS:</strong> {user.company.bs}</p>
-      <Update item={user} type='users'></Update>
     </div>
   );
 }

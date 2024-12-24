@@ -2,8 +2,7 @@ import { BrowserRouter as Router, Routes,Navigate, Route, Link } from "react-rou
 import Login from "./components/login";
 import Signup from './components/Signup';
 import UserPage from './components/UserPage';
-import GenaralDisplay from './components/GeneralDisplay';
-import UserData from './components/UserData';
+import GeneralDisplay from "./components/GeneralDisplay";
 import './App.css';
 
 function App() {

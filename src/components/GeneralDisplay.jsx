@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { createContext, useState, useEffect, useContext } from "react";
 import Post from "./Post"
 import Todo from "./Todo"
 import Album from "./Album"
+import AddItem from "./AddItem";
 //display add
+export const DisplayContext = createContext();
 function GenaralDisplay({ id, typeOfItem }) {
   const [items, setItems] = useState(null);
   const [error, setError] = useState(null);
@@ -28,7 +30,7 @@ function GenaralDisplay({ id, typeOfItem }) {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, typeOfItem]);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -36,22 +38,31 @@ function GenaralDisplay({ id, typeOfItem }) {
   if (error) {
     return <div>Error: {error}</div>;
   }
+  const filterItemsById = (deleteId) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== deleteId));
+  };
+  const updateDisplay = (updatedItem) => {
+    setItems((prevItems)=>prevItems.map((item)=>(updatedItem.id==item.id)?updatedItem:item))
+  }
   return (
-    <div>
-      {items.map((item) => (
-        <div key={item.id}>
-          {typeOfItem === "posts" && (
-            <Post post={item} />
-          )}
-          {typeOfItem === "todos" && (
-            <Todo status={item.completed}  id={item.id} title={item.title} />
-          )}
-          {typeOfItem === "albums" && (
-            <Album  album={item} />
-          )}
-        </div>
-      ))}
-    </div>
+    <DisplayContext.Provider value={{ filterItemsById ,updateDisplay}}>
+      <div>
+        <AddItem keys={Object.keys(items[0])} type={typeOfItem}/>
+        {items.map((item) => (
+          <div key={item.id}>
+            {typeOfItem === "posts" && (
+              <Post post={item} />
+            )}
+            {typeOfItem === "todos" && (
+              <Todo status={item.completed} id={item.id} title={item.title} />
+            )}
+            {typeOfItem === "albums" && (
+              <Album album={item} />
+            )}
+          </div>
+        ))}
+      </div>
+    </DisplayContext.Provider>
   );
 }
 export default GenaralDisplay;
