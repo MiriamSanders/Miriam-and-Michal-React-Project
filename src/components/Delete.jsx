@@ -1,6 +1,8 @@
 import React,{useContext} from "react"
 import { FaTrash } from "react-icons/fa";
 import { DisplayContext } from "../components/GeneralDisplay";
+import '../css/Delete.css'
+
 function Delete({id,type}) {
     const { filterItemsById } = useContext(DisplayContext);
     async function deleteItem() {
@@ -22,7 +24,7 @@ function Delete({id,type}) {
     }
     }
     return (<>
-        <FaTrash onClick={deleteItem}></FaTrash>
+        <FaTrash  className="edit-icon" onClick={deleteItem}></FaTrash>
     </>
 
     )

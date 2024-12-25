@@ -5,8 +5,7 @@ import { DisplayContext } from "../components/GeneralDisplay";
 function Update({ item, type }) {
     const { updateDisplay } = useContext(DisplayContext);
     const [showUpdateDetails, setShowUpdateDetails] = useState(false);
-    const [updatedItem, setUpdatedItem] = useState(item); // Create a copy of the item for editing
-
+    const [updatedItem, setUpdatedItem] = useState(item);
     const handleInputChange = (key, value) => {
         setUpdatedItem((prevItem) => ({
             ...prevItem,
@@ -24,7 +23,9 @@ function Update({ item, type }) {
                 body: JSON.stringify(updatedData),
             });
             if (response.ok) {
-                updateDisplay(updatedData)
+                updateDisplay(updatedData);
+                setShowUpdateDetails(false);
+
             }
         }
         catch (ex) {

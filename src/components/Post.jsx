@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import '../css/post.css';
-import { FaPen, FaTrash } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 import Update from "./Update";
 import Comment from "./Comment";
 import Delete from "./Delete";
@@ -8,6 +8,7 @@ import Delete from "./Delete";
 function Post({ post }) {
     const [showPost, setShowPost] = useState(false);
     const [comments, setComments] = useState(null);
+    const { id } = useParams();
 
     async function showComments() {
 
@@ -39,9 +40,9 @@ function Post({ post }) {
                     <h6 className="postTitle">{post.title}</h6>
                     <p className="postData">{post.body}</p>
                     <button onClick={showComments}>Show Comments</button>
-                    {comments && comments.map((comment) => { return <Comment key={comment.id}  body={comment.body} email={comment.email}></Comment> })}
-                   <Update item={post} type='posts'/>
-                    <Delete id={post.id} type='posts'/>
+                    {comments && comments.map((comment) => { return <Comment key={comment.id} body={comment.body} email={comment.email}></Comment> })}
+                    <Update item={post} type='posts' />
+                    <Delete id={post.id} type='posts' />
                 </div>
             )}
         </>

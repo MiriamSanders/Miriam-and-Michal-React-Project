@@ -1,18 +1,30 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-function AddItem({keys,type})
-{
+function AddItem({ keys, type }) {
     const { id } = useParams();
-    const [showAddItem,setShowAddItem]=useState(false);
-    const [item,setItem]=useState({"userId":id});
-   const handleInputChange=(key,value)=>{
-    setItem((prevItem) => ({
-        ...prevItem,
-        [key]: value,
-    }));
-   }
-    const addNewItem=async()=>{
+    const [showAddItem, setShowAddItem] = useState(false);
+    const [item, setItem] = useState({ userId: id });
+
+    const handleInputChange = (key, value) => {
+        setItem((prevItem) => ({
+            ...prevItem,
+            [key]: value,
+        }));
+    };
+
+    const isFormValid = () => {
+        return Object.keys(item).some(
+            (key) => key !== "userId" && item[key] && item[key].trim() !== ""
+        );
+    };
+
+    const addNewItem = async () => {
+        if (!isFormValid()) {
+            alert("Please fill in at least one field before saving.");
+            return;
+        }
+
         try {
             let response = await fetch(`http://localhost:3000/${type}`, {
                 method: 'POST',
@@ -22,18 +34,43 @@ function AddItem({keys,type})
                 body: JSON.stringify(item),
             });
             if (response.ok) {
-             //   updateDisplay(item)
+                setShowAddItem(false);
+                setItem({ userId: id });
             }
-        }
-        catch (ex) {
+        } catch (ex) {
             console.log(ex);
-
         }
     };
-  return(<>
-  <button onClick={()=>setShowAddItem(true)}>{ `add ${type}`}</button>
-  {showAddItem&&<div>{keys.map((key)=>{if((key != 'id' && key != 'userId')) return <input placeholder={key}  onChange={(e) => handleInputChange(key, e.target.value)}/>})}</div>}
-  <button type="button" onClick={addNewItem}>send</button>
-  </>)
+
+    return (
+        <>
+            <button onClick={() => setShowAddItem(true)}>{`Add ${type}`}</button>
+            {showAddItem && (
+                <div className="postContainer">
+                    {keys.map((key) => (
+                        key !== 'id' && key !== 'userId' && (
+                            <div key={key} style={{ marginBottom: '10px' }}>
+                                <label htmlFor={key} style={{ display: 'block', fontWeight: 'bold' }}>{key}:</label>
+                                <input
+                                    id={key}
+                                    placeholder={key}
+                                    onChange={(e) => handleInputChange(key, e.target.value)}
+                                    style={{
+                                        width: '100%',
+                                        padding: '8px',
+                                        marginBottom: '10px',
+                                        border: '1px solid #ccc',
+                                        borderRadius: '4px',
+                                    }}
+                                />
+                            </div>
+                        )
+                    ))}
+                    <button onClick={addNewItem} style={{ display: 'block', margin: '0 auto' }}>Send</button>
+                </div>
+            )}
+        </>
+    );
 }
+
 export default AddItem;
