@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate,useParams } from "react-router-dom";
 import "../css/album.css"; 
-import { FaPen, FaTrash } from "react-icons/fa";
 import Photo from "./Photo";
 import Update from "./Update";
 import Delete from "./Delete";
@@ -10,6 +10,8 @@ function Album({ album }) {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [photoPage, setPhotoPage] = useState(1);
+    const { id } = useParams();
+    const navigate = useNavigate();
     async function openAlbumPhotos(){
         setLoading(true);
         setError(null); 
@@ -20,6 +22,7 @@ function Album({ album }) {
             }
             const result = await response.json();
             if (result) {
+                navigate(`/home/users/${id}/albums/${album.id}`);
                 setPhotos(result.data);
             } else {
                 throw new Error("No photos in the album");

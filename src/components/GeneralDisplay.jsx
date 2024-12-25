@@ -43,11 +43,14 @@ function GenaralDisplay({ id, typeOfItem }) {
   };
   const updateDisplay = (updatedItem) => {
     setItems((prevItems)=>prevItems.map((item)=>(updatedItem.id==item.id)?updatedItem:item))
-  }
+  };
+  const updateAddedDisplay=(newItem)=>{
+    setItems ((prevItems)=>[...prevItems,newItem]);
+  };
   return (
-    <DisplayContext.Provider value={{ filterItemsById ,updateDisplay}}>
+    <DisplayContext.Provider value={{ filterItemsById ,updateDisplay,updateAddedDisplay}}>
       <div>
-        <AddItem keys={Object.keys(items[0])} type={typeOfItem}/>
+        <AddItem key={typeOfItem} keys={Object.keys(items[0])} type={typeOfItem} display={false}/>
         {items.map((item) => (
           <div key={item.id}>
             {typeOfItem === "posts" && (

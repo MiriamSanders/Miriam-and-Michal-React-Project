@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import '../css/post.css';
 import { useParams } from "react-router-dom";
 import Update from "./Update";
@@ -6,10 +7,15 @@ import Comment from "./Comment";
 import Delete from "./Delete";
 //update my posts, delte my posts
 function Post({ post }) {
+    const navigate = useNavigate();
     const [showPost, setShowPost] = useState(false);
     const [comments, setComments] = useState(null);
     const { id } = useParams();
-
+function showPostFunction()
+{
+    setShowPost(true);
+    navigate(`/home/users/${id}/posts/${post.id}`);
+}
     async function showComments() {
 
         const response = await fetch(
@@ -32,7 +38,7 @@ function Post({ post }) {
                 <div className="postContainer">
                     <p>{post.id}</p>
                     <p>{post.title}</p>
-                    <button onClick={() => setShowPost(!showPost)}>Show Post</button>
+                    <button onClick={showPostFunction}>Show Post</button>
                 </div>
             )}
             {showPost && (
@@ -40,7 +46,7 @@ function Post({ post }) {
                     <h6 className="postTitle">{post.title}</h6>
                     <p className="postData">{post.body}</p>
                     <button onClick={showComments}>Show Comments</button>
-                    {comments && comments.map((comment) => { return <Comment key={comment.id} body={comment.body} email={comment.email}></Comment> })}
+                    {comments && comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}
                     <Update item={post} type='posts' />
                     <Delete id={post.id} type='posts' />
                 </div>

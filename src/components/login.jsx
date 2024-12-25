@@ -13,7 +13,7 @@ function Login() {
             const user = await response.json();  // Get the user data from the response
 
             if (user.length > 0 && user[0].website === password) {  // Check if the website matches the password (or any other logic you need)
-                navigate(`/users/${user[0].id}`);  // Navigate to the user's page, replace `/user/${user[0].id}` with the correct route
+                navigate(`/home/users/${user[0].id}`);  // Navigate to the user's page, replace `/user/${user[0].id}` with the correct route
             } else {
                 alert('Incorrect password');
             }

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { useParams } from "react-router-dom";
+import { DisplayContext } from "../components/GeneralDisplay";
 
-function AddItem({ keys, type }) {
+function AddItem({ keys, type,display }) {
     const { id } = useParams();
-    const [showAddItem, setShowAddItem] = useState(false);
+    const { updateAddedDisplay } = useContext(DisplayContext);
+    const [showAddItem, setShowAddItem] = useState(display);
     const [item, setItem] = useState({ userId: id });
 
     const handleInputChange = (key, value) => {
@@ -35,7 +37,8 @@ function AddItem({ keys, type }) {
             });
             if (response.ok) {
                 setShowAddItem(false);
-                setItem({ userId: id });
+                //setItem({ userId: id });
+                updateAddedDisplay(item);
             }
         } catch (ex) {
             console.log(ex);

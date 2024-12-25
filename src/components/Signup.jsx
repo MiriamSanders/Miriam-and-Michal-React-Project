@@ -85,7 +85,7 @@ function Signup() {
             });
             if (response.ok) {
                 let createdUser = await response.json();
-                navigate(`/users/${createdUser.id}`); //dost navigate to the right place
+                navigate(`/home/users/${createdUser.id}`); //dost navigate to the right place
             }
 
         }

@@ -10,17 +10,17 @@ function UserPage()
     return(
     <>
       <nav>
-        <Link to={`/users/${id}/info`}>info</Link>
-        <Link to={`/users/${id}/posts`}>posts</Link>
-        <Link to={`/users/${id}/todos`}>todos</Link>
-        <Link to={`/users/${id}/albums`}>albums</Link>
-        <Link to="/login">logout</Link>
+        <Link to={`/home/users/${id}/info`}>info</Link>
+        <Link to={`/home/users/${id}/posts`}>posts</Link>
+        <Link to={`/home/users/${id}/todos`}>todos</Link>
+        <Link to={`/home/users/${id}/albums`}>albums</Link>
+        <Link to="/home/login">logout</Link>
       </nav>
       <Routes>
         <Route path="info" element={<UserData id={id}/>} />
-        <Route path="posts" element={<GenaralDisplay id={id} typeOfItem="posts"/>} />
+        <Route path="posts/*" element={<GenaralDisplay id={id} typeOfItem="posts"/>} />
         <Route path="todos" element={<GenaralDisplay id={id} typeOfItem="todos"/>} />
-        <Route path="albums" element={<GenaralDisplay id={id} typeOfItem="albums" />} />
+        <Route path="albums/*" element={<GenaralDisplay id={id} typeOfItem="albums" />} />
         <Route path="" element={<h2>Welcome to the User Dashboard</h2>} />
         <Route path="*" element={<h2>Sub-Page Not Found</h2>} /> 
       </Routes> 
