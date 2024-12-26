@@ -1,58 +1,40 @@
-/* .item-container {
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+/* עיצוב השכבה החיצונית */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* עיצוב המודאל */
+.modal {
+    background: #fff;
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
 }
 
-.item-field {
-    margin-bottom: 10px;
-}
-
-.form-input {
-    width: 100%;
-    padding: 8px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.form-input:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-.item-text {
-    font-size: 1rem;
-    color: #333;
-}
-
-.edit-icon {
-    cursor: pointer;
-    color: #007bff;
-    font-size: 1.2rem;
-    transition: transform 0.2s;
-}
-
-.edit-icon:hover {
-    transform: scale(1.2);
-    color: #0056b3;
-}
-
-.update-button {
-    background: #007bff;
+/* עיצוב הכפתור */
+.btn-primary {
+    background-color: #007bff;
     color: white;
-    padding: 8px 12px;
-    font-size: 1rem;
     border: none;
+    padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px;
+    font-size: 16px;
+    margin-top: 20px;
 }
 
-.update-button:hover {
-    background: #0056b3;
-} */
+.btn-primary:hover {
+    background-color: #0056b3;
+}

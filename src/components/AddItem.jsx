@@ -1,8 +1,8 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { DisplayContext } from "../components/GeneralDisplay";
 
-function AddItem({ keys, type,display }) {
+function AddItem({ keys, type, display }) {
     const { id } = useParams();
     const { updateAddedDisplay } = useContext(DisplayContext);
     const [showAddItem, setShowAddItem] = useState(display);
@@ -37,7 +37,6 @@ function AddItem({ keys, type,display }) {
             });
             if (response.ok) {
                 setShowAddItem(false);
-                //setItem({ userId: id });
                 updateAddedDisplay(item);
             }
         } catch (ex) {
@@ -69,7 +68,19 @@ function AddItem({ keys, type,display }) {
                             </div>
                         )
                     ))}
-                    <button onClick={addNewItem} style={{ display: 'block', margin: '0 auto' }}>Send</button>
+                    <div>
+                        <button
+                            onClick={addNewItem}
+                            style={{ marginRight: '10px' }}
+                        >
+                            Send
+                        </button>
+                        <button
+                            onClick={() => setShowAddItem(false)}
+                        >
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             )}
         </>
