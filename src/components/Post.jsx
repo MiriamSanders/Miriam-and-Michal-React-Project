@@ -46,9 +46,10 @@ function showPostFunction()
                     <h6 className="postTitle">{post.title}</h6>
                     <p className="postData">{post.body}</p>
                     <button onClick={showComments}>Show Comments</button>
-                    {comments && comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}
                     <Update item={post} type='posts' />
                     <Delete id={post.id} type='posts' />
+                 {comments && <div className="comment-container">{ comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>  }
+                    
                 </div>
             )}
         </>

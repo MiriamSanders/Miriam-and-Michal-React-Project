@@ -367,15 +367,32 @@
         "catchPhrase": "",
         "bs": "W"
       }
+    },
+    {
+      "id": "de9d",
+      "username": "dfghjkl",
+      "name": "",
+      "email": "",
+      "address": {
+        "city": "",
+        "suite": "",
+        "street": "",
+        "zipcode": "",
+        "geo": {
+          "lat": "",
+          "lng": ""
+        }
+      },
+      "phone": "",
+      "website": "wertyu",
+      "company": {
+        "name": "",
+        "catchPhrase": "",
+        "bs": ""
+      }
     }
   ],
   "todos": [
-    {
-      "userId": 1,
-      "id": "2",
-      "title": "quis ut nam facilis et officia qui",
-      "completed": true
-    },
     {
       "userId": 1,
       "id": "10",
@@ -383,16 +400,15 @@
       "completed": true
     },
     {
-      "userId": 1,
       "id": "11",
-      "title": "vero rerum temporibus dolor",
-      "completed": true
+      "title": "hii everyonee",
+      "completed": false
     },
     {
       "userId": 1,
       "id": "12",
       "title": "ipsa repellendus fugit nisi",
-      "completed": true
+      "completed": false
     },
     {
       "userId": 1,
@@ -1522,7 +1538,7 @@
       "id": "ab8e",
       "userId": "1",
       "title": "hiiiii12345",
-      "completed": false
+      "completed": true
     },
     {
       "id": "777a",
@@ -1577,11 +1593,6 @@
     }
   ],
   "albums": [
-    {
-      "userId": 1,
-      "id": "1",
-      "title": "יןןן"
-    },
     {
       "userId": 1,
       "id": "3",
@@ -6100,12 +6111,6 @@
       "id": "100",
       "title": "at nam consequatur ea labore ea harum",
       "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
-    },
-    {
-      "id": "8cf1"
-    },
-    {
-      "id": "6488"
     },
     {
       "id": "a97d",

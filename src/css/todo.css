@@ -6,6 +6,8 @@
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
+    background-color: #78959d25;
+    color: #333;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
 }

@@ -32,7 +32,7 @@
   .postContainer button {
     padding: 8px 15px;
     font-size: 1rem;
-    background-color: #007bff;
+    background-color: #78959d;
     color: white;
     border: none;
     border-radius: 5px;
@@ -41,10 +41,20 @@
   }
   
   .postContainer button:hover {
-    background-color: #0056b3;
+    background-color: #d3d7e4;
   }
   
   .postContainer button:focus {
     outline: none;
   }
+  .comment-container {
+    height: 300px; /* Set a fixed height */
+    overflow-y: scroll; /* Enable scrolling for overflow content */
+    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+    border-radius: 5px; /* Optional: Rounded corners */
+    padding: 10px; /* Add some padding for spacing */
+    background-color: #f9f9f9; /* Optional: Light background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for aesthetics */
+}
+
   

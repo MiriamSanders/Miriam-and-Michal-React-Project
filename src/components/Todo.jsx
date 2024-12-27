@@ -4,14 +4,15 @@ import '../css/todo.css'
 import Update from "./Update";
 import Delete from "./Delete";
 //update,delete
-function Todo({ status, id, title }) {
-   const [checked, setChecked] = useState(status);
+function Todo({ todo }) {
+   const [checked, setChecked] = useState(todo.completed);
+
 
    const handleCheckboxChange = async () => {
       setChecked(!checked);
 
       try {
-         const response = await fetch(`http://localhost:3000/todos/${id}`, {
+         const response = await fetch(`http://localhost:3000/todos/${todo.id}`, {
             method: 'PATCH',
             headers: {
                'Content-Type': 'application/json',
@@ -40,10 +41,10 @@ function Todo({ status, id, title }) {
             onChange={handleCheckboxChange}
             className="todo-checkbox"
          />
-         <p className="todo-id">{id}</p>
-         <p className={`todo-title ${checked ? 'completed' : ''}`}>{title}</p>
-     <Update item={{id:id,title:title}} type='todos'/>
-        <Delete id={id} type='todos'/>
+         <p className="todo-id">{todo.id}</p>
+         <p className={`todo-title ${checked ? 'completed' : ''}`}>{todo.title}</p>
+     <Update item={{id:todo.id,title:todo.title}} type='todos'/>
+        <Delete id={todo.id} type='todos'/>
       </div>
    );
 }

@@ -23,7 +23,7 @@ function Album({ album }) {
             const result = await response.json();
             if (result) {
                 navigate(`/home/users/${id}/albums/${album.id}`);
-                setPhotos(result.data);
+                setPhotos((prevPhotos)=>[...prevPhotos,...result.data]);
             } else {
                 throw new Error("No photos in the album");
             }
@@ -43,16 +43,16 @@ function Album({ album }) {
             <Delete id={album.id} type='albums'/>
             
             <button onClick={openAlbumPhotos} disabled={loading}>
-                {loading ? "Loading..." : "Load More Photos"}
+                {photoPage==1 ? "show photos" : "Load More Photos"}
             </button>
 
             {error && <div className="error">Error: {error}</div>}
 
-            <div className="photoContainer">
+        { photos[0]&&  <div className="photoContainer">
                 {photos.map((item) => {
                     return <Photo key={item.id} photo={item} />
                 })}
-            </div>
+            </div>}
         </div>
     );
 }

@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { DisplayContext } from "../components/GeneralDisplay";
+//import { DisplayContext } from "./GeneralRequests";
 
 function AddItem({ keys, type, display }) {
     const { id } = useParams();
-    const { updateAddedDisplay } = useContext(DisplayContext);
+  //  const { updateAddedDisplay } = useContext(DisplayContext);
     const [showAddItem, setShowAddItem] = useState(display);
     const [item, setItem] = useState({ userId: id });
 
