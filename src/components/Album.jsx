@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { useNavigate,useParams } from "react-router-dom";
+import { AlbumsContext } from "./Albums";
 import "../css/album.css"; 
 import Photo from "./Photo";
 import Update from "./Update";
@@ -10,6 +11,8 @@ function Album({ album }) {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [photoPage, setPhotoPage] = useState(1);
+   const { updateAlbums, deleteAlbums } = useContext(AlbumsContext);
+ 
     const { id } = useParams();
     const navigate = useNavigate();
     async function openAlbumPhotos(){
@@ -39,8 +42,8 @@ function Album({ album }) {
         <div className="albumContainer">
             <p className="albumId">{album.id}</p>
             <p className="albumTitle">{album.title}</p>
-           <Update item={album} type='albums'/>
-            <Delete id={album.id} type='albums'/>
+           <Update item={album} type='albums' updateDisplay={updateAlbums}/>
+            <Delete id={album.id} type='albums' deleteDisplay={deleteAlbums}/>
             
             <button onClick={openAlbumPhotos} disabled={loading}>
                 {photoPage==1 ? "show photos" : "Load More Photos"}
@@ -49,6 +52,7 @@ function Album({ album }) {
             {error && <div className="error">Error: {error}</div>}
 
         { photos[0]&&  <div className="photoContainer">
+            
                 {photos.map((item) => {
                     return <Photo key={item.id} photo={item} />
                 })}

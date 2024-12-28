@@ -1,10 +1,9 @@
 import React, { useState, useContext } from "react";
 import { FaPen } from "react-icons/fa";
-// import { DisplayContext } from "./GeneralRequests";
+//import { DisplayContext } from "./todos";
 import "../css/Update.css"
 
-function Update({ item, type }) {
-    // const { updateDisplay } = useContext(DisplayContext);
+function Update({ item, type,updateDisplay }) {
     const [showUpdateDetails, setShowUpdateDetails] = useState(false);
     const [updatedItem, setUpdatedItem] = useState(item);
 
@@ -26,7 +25,7 @@ function Update({ item, type }) {
                 body: JSON.stringify(updatedData),
             });
             if (response.ok) {
-              //  updateDisplay(updatedData);
+                updateDisplay(updatedData);
                 setShowUpdateDetails(false);
             }
         } catch (ex) {

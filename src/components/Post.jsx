@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/post.css';
 import { useParams } from "react-router-dom";
+import { PostsContext } from "./posts";
 import Update from "./Update";
 import Comment from "./Comment";
 import Delete from "./Delete";
@@ -10,12 +11,13 @@ function Post({ post }) {
     const navigate = useNavigate();
     const [showPost, setShowPost] = useState(false);
     const [comments, setComments] = useState(null);
+    const { updatePosts, deletePosts } = useContext(PostsContext);
+
     const { id } = useParams();
-function showPostFunction()
-{
-    setShowPost(true);
-    navigate(`/home/users/${id}/posts/${post.id}`);
-}
+    function showPostFunction() {
+        setShowPost(true);
+        navigate(`/home/users/${id}/posts/${post.id}`);
+    }
     async function showComments() {
 
         const response = await fetch(
@@ -46,10 +48,10 @@ function showPostFunction()
                     <h6 className="postTitle">{post.title}</h6>
                     <p className="postData">{post.body}</p>
                     <button onClick={showComments}>Show Comments</button>
-                    <Update item={post} type='posts' />
-                    <Delete id={post.id} type='posts' />
-                 {comments && <div className="comment-container">{ comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>  }
-                    
+                    <Update item={post} type='posts' updateDisplay={updatePosts}/>
+                    <Delete id={post.id} type='posts'deleteDisplay={deletePosts} />
+                    {comments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>}
+
                 </div>
             )}
         </>

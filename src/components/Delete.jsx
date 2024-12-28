@@ -3,7 +3,7 @@ import { FaTrash } from "react-icons/fa";
 //import { DisplayContext } from "./GeneralRequests";
 import '../css/Delete.css'
 
-function Delete({ id, type }) {
+function Delete({ id, type,deleteDisplay }) {
    // const { filterItemsById } = useContext(DisplayContext);
     async function deleteItem() {
         try {
@@ -14,7 +14,7 @@ function Delete({ id, type }) {
                 },
             });
             if (response.ok) {
-              //  filterItemsById(id);
+                deleteDisplay(id);
             }
         }
         catch (error) {

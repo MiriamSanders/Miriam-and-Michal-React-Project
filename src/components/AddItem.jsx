@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 //import { DisplayContext } from "./GeneralRequests";
 
-function AddItem({ keys, type, display }) {
+function AddItem({ keys, type, display,addDisplay }) {
     const { id } = useParams();
   //  const { updateAddedDisplay } = useContext(DisplayContext);
     const [showAddItem, setShowAddItem] = useState(display);
@@ -37,7 +37,7 @@ function AddItem({ keys, type, display }) {
             });
             if (response.ok) {
                 setShowAddItem(false);
-                updateAddedDisplay(item);
+                addDisplay(item);
             }
         } catch (ex) {
             console.log(ex);

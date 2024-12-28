@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { FaPen, FaTrash } from "react-icons/fa";
-import '../css/todo.css'
+import React, { useState, useContext } from "react";
+import '../css/todo.css';
+import { DisplayContext } from "./todos";
+
 import Update from "./Update";
 import Delete from "./Delete";
 //update,delete
 function Todo({ todo }) {
    const [checked, setChecked] = useState(todo.completed);
-
+   const { updateTodo,deleteTodo } = useContext(DisplayContext);
 
    const handleCheckboxChange = async () => {
       setChecked(!checked);
@@ -43,8 +44,8 @@ function Todo({ todo }) {
          />
          <p className="todo-id">{todo.id}</p>
          <p className={`todo-title ${checked ? 'completed' : ''}`}>{todo.title}</p>
-     <Update item={{id:todo.id,title:todo.title}} type='todos'/>
-        <Delete id={todo.id} type='todos'/>
+     <Update item={{id:todo.id,title:todo.title}} type='todos' updateDisplay={updateTodo}/>
+        <Delete id={todo.id} type='todos' deleteDisplay={deleteTodo}/>
       </div>
    );
 }
