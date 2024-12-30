@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/post.css';
 import { useParams } from "react-router-dom";
-import { PostsContext } from "./posts";
+import { PostsContext } from "./Posts";
 import Update from "./Update";
 import Comment from "./Comment";
 import Delete from "./Delete";
@@ -48,8 +48,8 @@ function Post({ post }) {
                     <h6 className="postTitle">{post.title}</h6>
                     <p className="postData">{post.body}</p>
                     <button onClick={showComments}>Show Comments</button>
-                    <Update item={post} type='posts' updateDisplay={updatePosts}/>
-                    <Delete id={post.id} type='posts'deleteDisplay={deletePosts} />
+                    <Update item={post} type='posts' updateDisplay={updatePosts} />
+                    <Delete id={post.id} type='posts' deleteDisplay={deletePosts} />
                     {comments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>}
 
                 </div>
