@@ -40,6 +40,8 @@ function Post({ post }) {
                 <div className="postContainer">
                     <p>{post.id}</p>
                     <p>{post.title}</p>
+                    <Update item={post} type='posts' updateDisplay={updatePosts}/>
+                    <Delete id={post.id} type='posts'deleteDisplay={deletePosts} />
                     <button onClick={showPostFunction}>Show Post</button>
                 </div>
             )}
@@ -48,8 +50,6 @@ function Post({ post }) {
                     <h6 className="postTitle">{post.title}</h6>
                     <p className="postData">{post.body}</p>
                     <button onClick={showComments}>Show Comments</button>
-                    <Update item={post} type='posts' updateDisplay={updatePosts}/>
-                    <Delete id={post.id} type='posts'deleteDisplay={deletePosts} />
                     {comments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>}
 
                 </div>
