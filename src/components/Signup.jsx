@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react"
+import React, { useState, useReducer,useRef } from "react"
 import { useNavigate } from "react-router-dom";
 import '../css/login.css'
 //check inputs- mybe useForm?
@@ -31,7 +31,7 @@ const formReducer = (state, action) => {
             return state;
     }
 };
-function Signup() {
+function Signup({usernameRef}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [verifyPassword, setverifyPassword] = useState('');
@@ -97,7 +97,7 @@ function Signup() {
         <>
             {!succsessfulSignUP &&
                 <div className="login-container">
-                    <input name="username" placeholder="userName" className="login-input" onChange={(e) => setUsername(e.target.value)} />
+                    <input name="username" placeholder="userName" className="login-input"   ref={usernameRef} onChange={(e) => setUsername(e.target.value)} />
                     <input name="password" placeholder="password" className="login-input" onChange={(e) => setPassword(e.target.value)} />
                     <input name="verifyPassword" placeholder="password" className="login-input" onChange={(e) => setverifyPassword(e.target.value)} />
                     <button type="button" className="login-button" onClick={startSignUp}>submit</button>

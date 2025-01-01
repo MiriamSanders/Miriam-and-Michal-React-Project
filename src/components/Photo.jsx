@@ -1,13 +1,14 @@
-import React from "react";
+import React,{useContext} from "react";
 import Update from "./Update";
 import Delete from "./Delete";
-
-function Photo({ photo, updateDisplay, deleteDisplay }) {
+import { PhotoContext } from "./Album";
+function Photo({ photo,  }) {
+    const{updatePhoto,deletePhoto}=useContext(PhotoContext);
     return (
         <div>
             <img src={photo.thumbnailUrl} alt={photo.title} />
-            <Update item={photo} type='photos' updateDisplay={updateDisplay} />
-            <Delete id={photo.id} type='photos' deleteDisplay={deleteDisplay} />
+            <Update item={photo} type='photos' updateDisplay={updatePhoto} />
+            <Delete id={photo.id} type='photos' deleteDisplay={deletePhoto} />
         </div>
     );
 }

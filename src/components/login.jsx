@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useState ,useRef} from "react";
 import { useNavigate } from "react-router-dom";  // To handle navigation
 import '../css/login.css'
 //check inputs
-function Login() {
+function Login({ usernameRef }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();  // React Router's hook to handle navigation
+    const navigate = useNavigate();
 
     async function checkIFUserExists() {
-        let response = await fetch(`http://localhost:3000/users/?username=${username}`);  // Make sure the endpoint matches your API
+        let response = await fetch(`http://localhost:3000/users/?username=${username}`);
         if (response.status >= 200 && response.status < 300) {
-            const user = await response.json();  // Get the user data from the response
+            const user = await response.json();
 
-            if (user.length > 0 && user[0].website === password) {  // Check if the website matches the password (or any other logic you need)
-                navigate(`/home/users/${user[0].id}`);  // Navigate to the user's page, replace `/user/${user[0].id}` with the correct route
+            if (user.length > 0 && user[0].website === password) {
+                navigate(`/home/users/${user[0].id}`);
             } else {
                 alert('Incorrect password');
             }
@@ -22,22 +22,31 @@ function Login() {
         }
     }
 
+    const handleUsernameChange = (e) => {
+        setUsername(e.target.value);
+        if (usernameRef) {
+            usernameRef.current = e.target.value; 
+        }
+    };
+
     return (
         <div className="login-container">
-            <input 
-                name="username" 
-                placeholder="Username" 
-                 className="login-input"
-                onChange={(e) => setUsername(e.target.value)}  // Corrected to e.target.value
+            <input
+                name="username"
+                placeholder="Username"
+                className="login-input"
+                onChange={handleUsernameChange} // Update both state and ref
             />
-            <input 
-                name="password" 
+            <input
+                name="password"
                 type="password"
-                placeholder="Password" 
-                 className="login-input"
-                onChange={(e) => setPassword(e.target.value)}  // Corrected to e.target.value
+                placeholder="Password"
+                className="login-input"
+                onChange={(e) => setPassword(e.target.value)}
             />
-            <button  className="login-button" onClick={checkIFUserExists}>Login</button>
+            <button className="login-button" onClick={checkIFUserExists}>
+                Login
+            </button>
         </div>
     );
 }

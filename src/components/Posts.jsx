@@ -3,6 +3,7 @@ import Post from "./Post"
 import AddItem from "./AddItem";
 import { fetchData } from "./GeneralRequests";
 import useUpdateDisplay from "./useUpdateDisplay";
+import Search from "./Search";
 export const PostsContext = createContext();
 function Posts({id})
 {
@@ -16,6 +17,7 @@ function Posts({id})
    return  (
     <PostsContext.Provider value={{  updatePosts,deletePosts }}>
    <div>
+    <Search searchItems={["id","title"]} items={posts}/>
      <AddItem key='posts' keys={postAttributes} type='posts' display={false} addDisplay={addPosts}/>
     {posts&&posts.map((post)=>{ return <Post key={post.id} post={post}/>}
     )}
