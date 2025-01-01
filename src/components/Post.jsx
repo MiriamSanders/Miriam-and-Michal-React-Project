@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/post.css';
 import { useParams } from "react-router-dom";
@@ -12,7 +12,6 @@ function Post({ post }) {
     const [showPost, setShowPost] = useState(false);
     const [comments, setComments] = useState(null);
     const { updatePosts, deletePosts } = useContext(PostsContext);
-
     const { id } = useParams();
     function showPostFunction() {
         setShowPost(true);
@@ -51,7 +50,6 @@ function Post({ post }) {
                     <p className="postData">{post.body}</p>
                     <button onClick={showComments}>Show Comments</button>
                     {comments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>}
-
                 </div>
             )}
         </>
