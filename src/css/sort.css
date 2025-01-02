@@ -1,0 +1,45 @@
+.sort-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sort-container h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+#dropdown {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+#dropdown:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+
+.sort-container select {
+    width: 100%;
+    max-width: 200px;
+}
+
+.sort-container div {
+    margin-bottom: 10px;
+}
+
+.sort-container select option {
+    padding: 10px;
+    font-size: 1rem;
+}

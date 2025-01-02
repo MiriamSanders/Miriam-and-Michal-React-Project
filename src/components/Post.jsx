@@ -6,11 +6,14 @@ import { PostsContext } from "./posts";
 import Update from "./Update";
 import Comment from "./Comment";
 import Delete from "./Delete";
+import useUpdateDisplay from './useUpdateDisplay';
 //update my posts, delte my posts
+export const CommentContext=createContext();
 function Post({ post }) {
     const navigate = useNavigate();
     const [showPost, setShowPost] = useState(false);
-    const [comments, setComments] = useState(null);
+    // const [comments, setComments] = useState(null);
+    const [comments, setComments,updateComments,deleteComments] = useUpdateDisplay(null);
     const { updatePosts, deletePosts } = useContext(PostsContext);
     const { id } = useParams();
     function showPostFunction() {
@@ -49,7 +52,7 @@ function Post({ post }) {
                     <h6 className="postTitle">{post.title}</h6>
                     <p className="postData">{post.body}</p>
                     <button onClick={showComments}>Show Comments</button>
-                    {comments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>}
+                 <CommentContext.Provider value={{updateComments,deleteComments}}>  {comments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>}</CommentContext.Provider> 
                 </div>
             )}
         </>
