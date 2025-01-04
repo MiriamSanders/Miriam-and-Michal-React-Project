@@ -43,7 +43,7 @@ function Post({ post }) {
                     <p>{post.id}</p>
                     <p>{post.title}</p>
                     <Update item={post} type='posts' updateDisplay={updatePosts}/>
-                    <Delete id={post.id} type='posts'deleteDisplay={deletePosts} />
+                    <Delete id={post.id} type='posts' deleteDisplay={deletePosts} />
                     <button onClick={showPostFunction}>Show Post</button>
                 </div>
             )}

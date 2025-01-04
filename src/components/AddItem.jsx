@@ -37,7 +37,9 @@ function AddItem({ keys, type, display,addDisplay }) {
             });
             if (response.ok) {
                 setShowAddItem(false);
-                addDisplay(item);
+                let newItem=await response.json();
+                addDisplay(newItem);
+                
             }
         } catch (ex) {
             console.log(ex);
