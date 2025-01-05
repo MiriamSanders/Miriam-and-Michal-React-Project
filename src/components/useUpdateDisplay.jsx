@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 export default function useUpdateDisplay(initialItems = null) {
     const [items, setItems] = useState(initialItems);
-
     const updateItem = (updatedItem) => {
         setItems((prevItems) =>
             prevItems.map((item) => (item.id === updatedItem.id ? updatedItem : item))

@@ -6,7 +6,6 @@ import useUpdateDisplay from "./useUpdateDisplay";
 import "../css/sort.css"
 export const DisplayContext = createContext();
 function Todos({ id }) {
-    // const [todos, setTodos] = useState(null);
     const [todos, setTodos, updateTodo, deleteTodo, addTodo] = useUpdateDisplay(null);
     let todoAttributes = ['title', 'completed'];
     let sortAttributes = ['id', 'title', 'completed', 'random'];

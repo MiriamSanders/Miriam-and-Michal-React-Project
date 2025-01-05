@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { FaPen } from "react-icons/fa";
-//import { DisplayContext } from "./todos";
 import "../css/Update.css"
 
 function Update({ item, type,updateDisplay }) {

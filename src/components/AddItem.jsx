@@ -1,10 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-//import { DisplayContext } from "./GeneralRequests";
-
-function AddItem({ keys, type, display,addDisplay }) {
+function AddItem({ keys, type, display,addDisplay,setDisplayChanged }) {
     const { id } = useParams();
-  //  const { updateAddedDisplay } = useContext(DisplayContext);
     const [showAddItem, setShowAddItem] = useState(display);
     const [item, setItem] = useState({ userId: id });
 
@@ -39,7 +36,7 @@ function AddItem({ keys, type, display,addDisplay }) {
                 setShowAddItem(false);
                 let newItem=await response.json();
                 addDisplay(newItem);
-                
+                setDisplayChanged(true);
             }
         } catch (ex) {
             console.log(ex);

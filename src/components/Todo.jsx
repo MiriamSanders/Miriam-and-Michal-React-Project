@@ -4,7 +4,6 @@ import { DisplayContext } from "./todos";
 
 import Update from "./Update";
 import Delete from "./Delete";
-//update,delete
 function Todo({ todo }) {
    const [checked, setChecked] = useState(todo.completed);
    const { updateTodo,deleteTodo } = useContext(DisplayContext);

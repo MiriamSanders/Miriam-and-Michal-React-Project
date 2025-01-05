@@ -5,7 +5,6 @@ function UserData({ id }) {
   const [user, setUser] = useState(null); 
   const [error, setError] = useState(null); 
   const [loading, setLoading] = useState(true);  
- //update,delete
   useEffect(() => {
     const fetchData = async () => {
       try {

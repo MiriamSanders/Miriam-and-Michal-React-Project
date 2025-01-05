@@ -5,7 +5,6 @@ import { fetchData } from "./GeneralRequests";
 import useUpdateDisplay from "./useUpdateDisplay";
 export const AlbumsContext = createContext();
 function Albums({ id }) {
-    //const [albums, setAlbums] = useState(null);
     const [albums, setAlbums, updateAlbums, deleteAlbums, addAlbums] = useUpdateDisplay(null);
 
     let albumAttributes = ['title'];

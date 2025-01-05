@@ -418,7 +418,8 @@
   "todos": [
     {
       "id": "10",
-      "title": "happy chanuka"
+      "title": "happy chanuka",
+      "completed": false
     },
     {
       "id": "11",
@@ -5568,13 +5569,20 @@
       "name": "ex eaque eum natus",
       "email": "Emma@joanny.ca",
       "body": "perspiciatis quis doloremque\nveniam nisi eos velit sed\nid totam inventore voluptatem laborum et eveniet\naut aut aut maxime quia temporibus ut omnis"
+    },
+    {
+      "id": "a71a",
+      "userId": "1",
+      "email": "Sincere@april.biz",
+      "name": "Miriam  123",
+      "body": "sdfghjkl hfgdgd"
     }
   ],
   "posts": [
     {
       "userId": 1,
       "id": "4",
-      "title": "מייייקללל",
+      "title": "05012025",
       "body": "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit"
     },
     {
@@ -6200,6 +6208,24 @@
       "userId": "2",
       "title": "hello noww 1234",
       "body": "dfgb"
+    },
+    {
+      "id": "75e8",
+      "userId": "3",
+      "title": "hii",
+      "body": "1234567890"
+    },
+    {
+      "id": "1ef3",
+      "userId": "3",
+      "title": "ccvvxv",
+      "body": "xcxcx"
+    },
+    {
+      "id": "f5b7",
+      "userId": "3",
+      "title": "hi",
+      "body": "fghjkl;"
     }
   ],
   "photos": [

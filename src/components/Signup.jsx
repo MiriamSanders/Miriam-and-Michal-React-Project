@@ -1,6 +1,7 @@
-import React, { useState, useReducer,useRef } from "react"
+import React, { useState, useReducer, useRef, useContext } from "react"
 import { useNavigate } from "react-router-dom";
 import '../css/login.css'
+import { userContext } from "../App";
 //check inputs- mybe useForm?
 // הגדרת פעולות שיכולות לקרות בטופס
 const initialState = {
@@ -31,12 +32,13 @@ const formReducer = (state, action) => {
             return state;
     }
 };
-function Signup({usernameRef}) {
+function Signup({ usernameRef }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [verifyPassword, setverifyPassword] = useState('');
     const [succsessfulSignUP, setSuccessfulSignUp] = useState(false);
     const [state, dispatch] = useReducer(formReducer, initialState);
+    const { setUserData } = useContext(userContext);
     const navigate = useNavigate();
     async function startSignUp() {
         if (password === verifyPassword) {
@@ -85,7 +87,10 @@ function Signup({usernameRef}) {
             });
             if (response.ok) {
                 let createdUser = await response.json();
-                navigate(`/home/users/${createdUser.id}`); //dost navigate to the right place
+                setUserData(createUser);
+                localStorage.setItem("currentUser", JSON.stringify(createdUser));
+                navigate(`/home/users/${createdUser.id}`);
+
             }
 
         }
@@ -97,7 +102,7 @@ function Signup({usernameRef}) {
         <>
             {!succsessfulSignUP &&
                 <div className="login-container">
-                    <input name="username" placeholder="userName" className="login-input"   ref={usernameRef} onChange={(e) => setUsername(e.target.value)} />
+                    <input name="username" placeholder="userName" className="login-input" ref={usernameRef} onChange={(e) => setUsername(e.target.value)} />
                     <input name="password" placeholder="password" className="login-input" onChange={(e) => setPassword(e.target.value)} />
                     <input name="verifyPassword" placeholder="password" className="login-input" onChange={(e) => setverifyPassword(e.target.value)} />
                     <button type="button" className="login-button" onClick={startSignUp}>submit</button>
@@ -143,10 +148,6 @@ function Signup({usernameRef}) {
                         onChange={(e) =>
                             dispatch({ type: "SET_FIELD", field: "phone", value: e.target.value })
                         } />
-                    {/* <input name="website" placeholder="website" value={state.website}
-                        onChange={(e) =>
-                            dispatch({ type: "SET_FIELD", field: "website", value: e.target.value })
-                        } /> */}
                     <label>company</label>
                     <input name="companyname" placeholder="company name" className="login-input" value={state.companyName}
                         onChange={(e) =>

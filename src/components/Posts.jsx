@@ -5,24 +5,37 @@ import { fetchData } from "./GeneralRequests";
 import useUpdateDisplay from "./useUpdateDisplay";
 import Search from "./Search";
 export const PostsContext = createContext();
-function Posts({id})
-{
-    // const [posts, setPosts] = useState(null);
-    const [posts,setPosts,updatePosts,deletePosts,addPosts]=useUpdateDisplay(null);
-    let postAttributes=['title','body'];
-    useEffect(()=>{const  fetchPosts =async()=>{
-      setPosts(await fetchData('posts',id));}
-      fetchPosts();
-    },[id])
-   return  (
-    <PostsContext.Provider value={{  updatePosts,deletePosts }}>
-   <div>
-    <Search searchItems={["id","title"]} items={posts}/>
-     <AddItem key='posts' keys={postAttributes} type='posts' display={false} addDisplay={addPosts}/>
-    {posts&&posts.map((post)=>{ return <Post key={post.id} post={post}/>}
-    )}
-   </div>
-     </PostsContext.Provider>
-   )
+function Posts({ id }) {
+  const [showPosts, setShowPosts] = useState(false);
+  const [displayChanged, setDisplayChanged] = useState(false);
+  const [posts, setPosts, updatePosts, deletePosts, addPosts] = useUpdateDisplay(null);
+  let postAttributes = ['title', 'body'];
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setPosts(await fetchData('posts', id));
+    }
+    fetchPosts();
+  }, [id]);
+  async function fatchAllPosts() {
+    if (!showPosts) {
+      setPosts(await fetchData('posts'));
+      setShowPosts(true);
+    }
+    else {
+      setPosts(await fetchData('posts', id));
+      setShowPosts(false);
+    }
+  }
+  return (
+    <PostsContext.Provider value={{ updatePosts, deletePosts, displayChanged, setDisplayChanged }}>
+      <div>
+        <button onClick={fatchAllPosts}>{showPosts ? "show my posts" : "show all posts"}</button>
+        <Search type="posts" searchItems={["id", "title"]} setItems={setPosts} items={posts} displayChanged={displayChanged} />
+        <AddItem key='posts' keys={postAttributes} type='posts' display={false} addDisplay={addPosts} setDisplayChanged={setDisplayChanged} />
+        {posts && posts.map((post) => { return <Post key={post.id} post={post} /> }
+        )}
+      </div>
+    </PostsContext.Provider>
+  )
 }
 export default Posts
