@@ -1,36 +1,36 @@
 .displayUserData {
-    width: 80%;
-    max-width: 800px;
+    width: 100%;
+   /* // max-width: 800px; */
     margin: 20px auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #f9f9f97a;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
   
   .displayUserData h1 {
     font-size: 2rem;
-    color: #333;
+    color: #370810;
     text-align: center;
     margin-bottom: 20px;
   }
   
   .displayUserData h2 {
     font-size: 1.5rem;
-    color: #555;
+    color: #41121a;
     margin-top: 20px;
   }
   
   .displayUserData p {
     font-size: 1rem;
-    color: #666;
+    color: #5e242e;
     line-height: 1.6;
     margin: 5px 0;
   }
   
   .displayUserData strong {
     font-weight: bold;
-    color: #333;
+    color: #370810;
   }
   
   .displayUserData a {

@@ -11,7 +11,7 @@ function App() {
   const [userData, setUserData] = useState(localStorage.getItem("currentUser") ? JSON.parse(localStorage.getItem("currentUser")) : null);
   return (<userContext.Provider value={{ userData, setUserData }}>
     <Router>
-      <nav>
+      <nav id="blah">
         <Link to="/login">Login</Link>
         <Link to="/signup">SignUp</Link>
       </nav>
