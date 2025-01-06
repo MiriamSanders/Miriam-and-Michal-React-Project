@@ -35,6 +35,7 @@ function Album({ album }) {
         } finally {
             setLoading(false);
             setPhotoPage((prevPhotoPage) => prevPhotoPage + 1);
+            navigate(`/home/users/${id}/albums/${album.id}/photos`);
         }
     }
 

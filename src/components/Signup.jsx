@@ -1,7 +1,7 @@
 import React, { useState, useReducer, useRef, useContext } from "react"
 import { useNavigate } from "react-router-dom";
 import '../css/login.css'
-import { userContext } from "../App";
+import { userContext } from "./App";
 //check inputs- mybe useForm?
 // הגדרת פעולות שיכולות לקרות בטופס
 const initialState = {

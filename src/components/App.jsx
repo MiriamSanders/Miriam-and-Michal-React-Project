@@ -1,9 +1,9 @@
 import React, { useRef, createContext, useState } from "react";
 import { BrowserRouter as Router, Routes, Navigate, Route, Link } from "react-router-dom";
-import Login from "./components/login";
-import Signup from './components/Signup';
-import UserPage from './components/UserPage';
-import './App.css';
+import Login from "./login";
+import Signup from './Signup';
+import UserPage from './UserPage';
+import '../css/App.css';
 export const userContext = createContext();
 
 function App() {
