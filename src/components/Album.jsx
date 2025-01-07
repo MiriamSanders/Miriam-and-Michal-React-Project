@@ -50,11 +50,11 @@ function Album({ album }) {
             <button onClick={openAlbumPhotos} disabled={loading}>
                 {photoPage === 1 ? "show photos" : "Load More Photos"}
             </button>
-
             {error && <div className="error">Error: {error}</div>}
             <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}><div>
                 <AddItem keys={attributes} type="photos" display={false} addDisplay={addPhotos} />
                 {showPhotos && <div className="photoContainer">
+                    <button onClick={()=>{setShowAlbum(false); navigate(`/home/users/${id}/albums`); }}> x</button>
                     {photos.map((item) => {
                         return <Photo
                             key={item.id}

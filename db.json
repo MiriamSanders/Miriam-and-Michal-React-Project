@@ -417,11 +417,6 @@
   ],
   "todos": [
     {
-      "id": "10",
-      "title": "happy chanuka",
-      "completed": false
-    },
-    {
       "id": "11",
       "title": "hii everyonee ",
       "completed": false
@@ -1419,7 +1414,7 @@
     {
       "id": "181",
       "title": "מיכלוששש",
-      "completed": true
+      "completed": false
     },
     {
       "userId": 10,

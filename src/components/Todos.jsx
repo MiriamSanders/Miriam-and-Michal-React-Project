@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import Todo from "./Todo";
 import AddItem from "./AddItem";
+import Search from "./Search";
+
 import { fetchData } from "../js-files/GeneralRequests";
 import useHandleDisplay from "./useHandleDisplay";
 import "../css/sort.css"
@@ -44,7 +46,7 @@ function Todos({ id }) {
     return (
         <DisplayContext.Provider value={{ updateTodo, deleteTodo }}>
             <div >
-
+            <Search type="todos" searchItems={["id", "title", "completed"]} setItems={setTodos} items={todos} displayChanged={false} />
                 <div className="sort-container">
                     <h2>sort by:</h2>
                     <select id="dropdown" onChange={(e) => sortByAttributes(e.target.value)}>

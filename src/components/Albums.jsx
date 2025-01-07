@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import Album from "./Album";
 import AddItem from "./AddItem";
+import Search from "./Search";
 import { fetchData } from "../js-files/GeneralRequests";
 import useHandleDisplay from "./useHandleDisplay";
 export const AlbumsContext = createContext();
@@ -19,6 +20,7 @@ function Albums({ id }) {
     return (
         <AlbumsContext.Provider value={{ updateAlbums, deleteAlbums }}>
             <div>
+                <Search type="albums" searchItems={["id", "title"]} setItems={setAlbums} items={albums} displayChanged={false} />
                 <AddItem key="albums" keys={albumAttributes} type="albums" display={false} addDisplay={addAlbums} />
                 {albums && albums.map((album) => <Album key={album.id} album={album} />)}
             </div>

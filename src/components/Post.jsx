@@ -2,7 +2,7 @@ import React, { useState, useContext, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/post.css';
 import { useParams } from "react-router-dom";
-import { PostsContext } from "./posts";
+import { PostsContext } from "./Posts";
 import { userContext } from "./App";
 import Update from "./Update";
 import Comment from "./Comment";

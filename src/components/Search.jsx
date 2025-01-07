@@ -31,13 +31,15 @@ function Search({ type, searchItems, setItems, items, displayChanged }) {
         }
 
         // Filter the items based on the search value
-        const filteredItems = allItems.filter((item) => {
+        const filteredItems = allItems?.filter((item) => {
             const value = item[attribute];
-            return (
-                value &&
-                value.toString().toLowerCase().includes(inputValue.toLowerCase())
-            );
+            if (typeof value === "boolean") {
+                if (inputValue === "") return true;
+                return value === (inputValue.toLowerCase() === "true");
+            }
+            return value && value.toString().toLowerCase().includes(inputValue.toLowerCase());
         });
+        
 
         // Set filtered items or all items if the search field is empty
         setItems(inputValue ? filteredItems : allItems);
