@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import Todo from "./Todo";
 import AddItem from "./AddItem";
-import { fetchData } from "./GeneralRequests";
+import { fetchData } from "../js-files/GeneralRequests";
 import useUpdateDisplay from "./useUpdateDisplay";
 import "../css/sort.css"
 export const DisplayContext = createContext();

@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useSearchParams, useParams } from "react-router-dom";
-import { fetchData } from "./GeneralRequests";
+import { fetchData } from "../js-files/GeneralRequests";
 import "../css/search.css";
 
 function Search({ type, searchItems, setItems, items, displayChanged }) {

@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import Post from "./Post"
 import AddItem from "./AddItem";
-import { fetchData } from "./GeneralRequests";
+import { fetchData } from "../js-files/GeneralRequests";
 import useUpdateDisplay from "./useUpdateDisplay";
 import Search from "./Search";
 export const PostsContext = createContext();
