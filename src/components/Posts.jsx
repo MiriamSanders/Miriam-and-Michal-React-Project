@@ -2,13 +2,13 @@ import React, { createContext, useState, useEffect, useContext } from "react";
 import Post from "./Post"
 import AddItem from "./AddItem";
 import { fetchData } from "../js-files/GeneralRequests";
-import useUpdateDisplay from "./useUpdateDisplay";
+import useHandleDisplay from "./useHandleDisplay";
 import Search from "./Search";
 export const PostsContext = createContext();
 function Posts({ id }) {
   const [showPosts, setShowPosts] = useState(false);
   const [displayChanged, setDisplayChanged] = useState(false);
-  const [posts, setPosts, updatePosts, deletePosts, addPosts] = useUpdateDisplay(null);
+  const [posts, setPosts, updatePosts, deletePosts, addPosts] = useHandleDisplay(null);
   let postAttributes = ['title', 'body'];
   useEffect(() => {
     const fetchPosts = async () => {

@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 import Todo from "./Todo";
 import AddItem from "./AddItem";
 import { fetchData } from "../js-files/GeneralRequests";
-import useUpdateDisplay from "./useUpdateDisplay";
+import useHandleDisplay from "./useHandleDisplay";
 import "../css/sort.css"
 export const DisplayContext = createContext();
 function Todos({ id }) {
-    const [todos, setTodos, updateTodo, deleteTodo, addTodo] = useUpdateDisplay(null);
+    const [todos, setTodos, updateTodo, deleteTodo, addTodo] = useHandleDisplay(null);
     let todoAttributes = ['title', 'completed'];
     let sortAttributes = ['id', 'title', 'completed', 'random'];
 

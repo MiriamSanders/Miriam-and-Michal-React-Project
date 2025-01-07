@@ -1,22 +1,22 @@
-import React, { useState, useContext, createContext} from "react";
+import React, { useState, useContext, createContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AlbumsContext } from "./Albums";
-import useUpdateDisplay from "./useUpdateDisplay";
+import useHandleDisplay from "./useHandleDisplay";
 import Photo from "./Photo";
 import Update from "./Update";
 import Delete from "./Delete";
 import AddItem from "./AddItem";
 import "../css/album.css";
-export const PhotoContext=createContext();
+export const PhotoContext = createContext();
 function Album({ album }) {
-    const [photos, setPhotos, updatePhotos, deletePhotos,addPhotos] = useUpdateDisplay([]); 
+    const [photos, setPhotos, updatePhotos, deletePhotos, addPhotos] = useHandleDisplay([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [photoPage, setPhotoPage] = useState(1);
-    const { updateAlbums, deleteAlbums } = useContext(AlbumsContext); 
+    const { updateAlbums, deleteAlbums } = useContext(AlbumsContext);
     const { id } = useParams();
     const navigate = useNavigate();
-    const attributes=["title","url","thumbnailUrl"];
+    const attributes = ["title", "url", "thumbnailUrl"];
     async function openAlbumPhotos() {
         setLoading(true);
         setError(null);
@@ -51,16 +51,16 @@ function Album({ album }) {
             </button>
 
             {error && <div className="error">Error: {error}</div>}
-<PhotoContext.Provider value={{updatePhotos,deletePhotos}}><div>
-         <AddItem keys={attributes} type="photos" display={false} addDisplay={addPhotos}/>
-            {photos[0] && <div className="photoContainer">
-                {photos.map((item) => {
-                    return <Photo
-                        key={item.id}
-                        photo={item}
-                    />
-                })}
-            </div>}
+            <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}><div>
+                <AddItem keys={attributes} type="photos" display={false} addDisplay={addPhotos} />
+                {photos[0] && <div className="photoContainer">
+                    {photos.map((item) => {
+                        return <Photo
+                            key={item.id}
+                            photo={item}
+                        />
+                    })}
+                </div>}
             </div>
             </PhotoContext.Provider>
         </div>

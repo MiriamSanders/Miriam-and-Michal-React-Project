@@ -8,7 +8,7 @@ import Update from "./Update";
 import Comment from "./Comment";
 import Delete from "./Delete";
 import AddItem from "./AddItem";
-import useUpdateDisplay from "./useUpdateDisplay";
+import useHandleDisplay from "./useHandleDisplay";
 //update my posts, delte my posts
 export const CommentContext = createContext();
 function Post({ post }) {
@@ -17,7 +17,7 @@ function Post({ post }) {
     console.log(id, postid);
     const [showPost, setShowPost] = useState(postid == post.id ? true : false);
     // const [comments, setComments] = useState(null);
-    const [comments, setComments, updateComments, deleteComments, addComments] = useUpdateDisplay(null);
+    const [comments, setComments, updateComments, deleteComments, addComments] = useHandleDisplay(null);
     const { updatePosts, deletePosts, setDisplayChanged } = useContext(PostsContext);
     const { userData } = useContext(userContext);
     const attributes = ["email", "name", "body"];
@@ -26,23 +26,23 @@ function Post({ post }) {
         navigate(`/home/users/${id}/posts/${post.id}`);
     }
     async function showComments() {
-try{
-        const response = await fetch(
-            `http://localhost:3000/comments/?postId=${id}`
-        );
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
+        try {
+            const response = await fetch(
+                `http://localhost:3000/comments/?postId=${id}`
+            );
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const result = await response.json();
 
-        if (result.length > 0) {
-            setComments(result); 
-            navigate(`/home/users/${id}/posts/${post.id}/comments`);
+            if (result.length > 0) {
+                setComments(result);
+                navigate(`/home/users/${id}/posts/${post.id}/comments`);
+            }
         }
-    }
-    catch(ex){
+        catch (ex) {
 
-    }
+        }
     }
     return (
         <>

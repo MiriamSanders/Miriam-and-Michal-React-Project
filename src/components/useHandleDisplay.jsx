@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function useUpdateDisplay(initialItems = null) {
+export default function useHandleDisplay(initialItems = null) {
     const [items, setItems] = useState(initialItems);
     const updateItem = (updatedItem) => {
         setItems((prevItems) =>

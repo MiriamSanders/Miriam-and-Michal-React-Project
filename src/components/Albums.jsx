@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 import Album from "./Album";
 import AddItem from "./AddItem";
 import { fetchData } from "../js-files/GeneralRequests";
-import useUpdateDisplay from "./useUpdateDisplay";
+import useHandleDisplay from "./useHandleDisplay";
 export const AlbumsContext = createContext();
 function Albums({ id }) {
-    const [albums, setAlbums, updateAlbums, deleteAlbums, addAlbums] = useUpdateDisplay(null);
+    const [albums, setAlbums, updateAlbums, deleteAlbums, addAlbums] = useHandleDisplay(null);
 
     let albumAttributes = ['title'];
 
