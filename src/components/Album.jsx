@@ -10,6 +10,7 @@ import "../css/album.css";
 export const PhotoContext = createContext();
 function Album({ album }) {
     const [photos, setPhotos, updatePhotos, deletePhotos, addPhotos] = useHandleDisplay([]);
+    const [showPhotos,setShowPhotos]=useState(false);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [photoPage, setPhotoPage] = useState(1);
@@ -28,7 +29,7 @@ function Album({ album }) {
             const result = await response.json();
             if (result) {
                 setPhotos((prevPhotos) => prevPhotos ? [...prevPhotos, ...result.data] : result.data);
-
+                setShowPhotos(true);
             }
         } catch (err) {
             setError(err.message);
@@ -53,7 +54,7 @@ function Album({ album }) {
             {error && <div className="error">Error: {error}</div>}
             <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}><div>
                 <AddItem keys={attributes} type="photos" display={false} addDisplay={addPhotos} />
-                {photos[0] && <div className="photoContainer">
+                {showPhotos && <div className="photoContainer">
                     {photos.map((item) => {
                         return <Photo
                             key={item.id}

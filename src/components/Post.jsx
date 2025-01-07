@@ -57,12 +57,14 @@ function Post({ post }) {
                     <button onClick={showPostFunction}>Show Post</button>
                 </div>
             )}
-            {showPost && (
-                <div className="postContainer">
+            {showPost && (<div className="overlay">
+                <div className="postContainer modal">
+                    <button onClick={()=>{setShowPost(false); navigate(`/home/users/${id}/posts`); }}> x</button>
                     <h6 className="postTitle">{post.title}</h6>
                     <p className="postData">{post.body}</p>
                     <button onClick={showComments}>Show Comments</button>
                     <CommentContext.Provider value={{ updateComments, deleteComments }}> <div> <AddItem keys={attributes} type="comments" display={false} addDisplay={addComments} />{comments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>}</div></CommentContext.Provider>
+                </div>
                 </div>
             )}
         </>
