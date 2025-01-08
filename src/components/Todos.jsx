@@ -53,7 +53,7 @@ function Todos({ id }) {
                         ))}
                     </select>
                 </div>
-                <AddItem key="todos" keys={todoAttributes} type="todos" display={false} addDisplay={addTodo} />
+                <AddItem key="todos" keys={todoAttributes} type="todos"  addDisplay={addTodo} />
                 {todos && todos.map((todo) => <Todo key={todo.id} todo={todo} />)}
             </div>
         </DisplayContext.Provider>

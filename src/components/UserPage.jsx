@@ -8,7 +8,7 @@ import { userContext } from "./App";
 function UserPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-   const {userData} =useContext(userContext);
+   const {userData,setUserData} =useContext(userContext);
    useEffect(()=>{if (userData?.id !== id) {
     //localStorage.remonnnnveItem("currentUser"); // Clear the current user
     navigate("/login", { replace: true }); // Redirect to the login page
@@ -20,7 +20,7 @@ function UserPage() {
         <Link to={`/home/users/${id}/posts`}>posts</Link>
         <Link to={`/home/users/${id}/todos`}>todos</Link>
         <Link to={`/home/users/${id}/albums`}>albums</Link>
-        <Link to="/login" onClick={()=>localStorage.removeItem("currentUser")}>logout</Link>
+        <Link to="/login" onClick={()=>{localStorage.removeItem("currentUser"),setUserData(null)}}>logout</Link>
       </nav>
       <Routes>
         <Route path="info" element={<UserData id={id} />} />

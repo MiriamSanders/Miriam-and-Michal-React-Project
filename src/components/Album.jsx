@@ -53,7 +53,7 @@ function Album({ album }) {
             </button>
             {error && <div className="error">Error: {error}</div>}
             <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}><div>
-                <AddItem keys={attributes} type="photos" display={false} addDisplay={addPhotos} />
+                <AddItem keys={attributes} type="photos"  addDisplay={addPhotos} />
                 {showPhotos && <div className="photoContainer">
                     <button className="close-btn" onClick={() => { setShowPhotos(false); navigate(`/home/users/${id}/albums`); }}> x</button>
                     <div className="photos-grid">

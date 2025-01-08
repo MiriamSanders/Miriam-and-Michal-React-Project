@@ -11,10 +11,11 @@ function App() {
   const [userData, setUserData] = useState(localStorage.getItem("currentUser") ? JSON.parse(localStorage.getItem("currentUser")) : null);
   return (<userContext.Provider value={{ userData, setUserData }}>
     <Router>
-      <nav id="blah">
+
+    {!userData &&<nav id="blah">
         <Link to="/login">Login</Link>
         <Link to="/signup">SignUp</Link>
-      </nav>
+      </nav>}
       <Routes >
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path='/login' element={<Login usernameRef={usernameRef} />} />

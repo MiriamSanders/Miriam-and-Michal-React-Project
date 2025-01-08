@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import "../css/AddItem.css";
 
-function AddItem({ keys, type, display, addDisplay, setDisplayChanged }) {
+function AddItem({ keys, type, addDisplay,defaltValues, setDisplayChanged }) {
     const { id } = useParams();
-    const [showAddItem, setShowAddItem] = useState(display);
+    const [showAddItem, setShowAddItem] = useState(false);
     const [item, setItem] = useState({ userId: id });
 
     const handleInputChange = (key, value) => {
