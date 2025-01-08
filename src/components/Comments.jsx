@@ -16,7 +16,7 @@ function Comments({ id }) {
 
     return (
         <div>
-            <AddItem key="comments" keys={commentAttributes} type="comments"  />
+            <AddItem key="comments" keys={commentAttributes} type="comments" defaltValues={user} />
             {comments && comments.map((comment) => <Comment key={comment.id} comment={comment} />)}
         </div>
     );

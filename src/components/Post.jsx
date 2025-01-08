@@ -18,7 +18,7 @@ function Post({ post }) {
     const [comments, setComments, updateComments, deleteComments, addComments] = useHandleDisplay(null);
     const { updatePosts, deletePosts, setDisplayChanged } = useContext(PostsContext);
     const { userData } = useContext(userContext);
-    const attributes = ["email", "name", "body"];
+    const attributes = ["name", "body"];
     const location =useLocation();
     function showPostFunction() {
         setShowPost(true);
@@ -29,7 +29,7 @@ function Post({ post }) {
         if(hasPath){
             showComments();
         }
-    },[location])
+    },[location.pathname])
     async function showComments() {
         try {
             const response = await fetch(
@@ -68,7 +68,7 @@ function Post({ post }) {
                     <h6 className="postTitle">{post.title}</h6>
                     <p className="postData">{post.body}</p>
                     <button onClick={showComments}>Show Comments</button>
-                    <CommentContext.Provider value={{ updateComments, deleteComments }}> <div> <AddItem keys={attributes} type="comments"  addDisplay={addComments} />{comments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>}</div></CommentContext.Provider>
+                    <CommentContext.Provider value={{ updateComments, deleteComments }}> <div> <AddItem keys={attributes} type="comments"  addDisplay={addComments} defaltValues={{email:userData.email,postId:post.id}}/>{comments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>}</div></CommentContext.Provider>
                 </div>
                 </div>
             )}

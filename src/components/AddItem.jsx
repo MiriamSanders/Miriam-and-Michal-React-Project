@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import "../css/AddItem.css";
 
-function AddItem({ keys, type, addDisplay,defaltValues, setDisplayChanged }) {
+function AddItem({ keys, type, addDisplay,defaltValues }) {
     const { id } = useParams();
     const [showAddItem, setShowAddItem] = useState(false);
-    const [item, setItem] = useState({ userId: id });
+    const [item, setItem] = useState(defaltValues);
 
     const handleInputChange = (key, value) => {
         setItem((prevItem) => ({
@@ -40,8 +40,8 @@ function AddItem({ keys, type, addDisplay,defaltValues, setDisplayChanged }) {
                 setShowAddItem(false);
                 const newItem = await response.json();
                 addDisplay(newItem);
-                setDisplayChanged(true);
-                setItem({ userId: id }); // Reset form fields after submission
+               // setDisplayChanged(true);
+                setItem(defaltValues); // Reset form fields after submission
             } else {
                 alert("Failed to add item. Please try again.");
             }

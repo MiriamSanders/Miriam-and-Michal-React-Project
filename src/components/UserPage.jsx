@@ -10,8 +10,7 @@ function UserPage() {
   const navigate = useNavigate();
    const {userData,setUserData} =useContext(userContext);
    useEffect(()=>{if (userData?.id !== id) {
-    //localStorage.remonnnnveItem("currentUser"); // Clear the current user
-    navigate("/login", { replace: true }); // Redirect to the login page
+    navigate("/login", { replace: true }); 
   }},[id])
   return (
     <>

@@ -31,7 +31,7 @@ function Posts({ id }) {
       <div>
         <button onClick={fatchAllPosts}>{showPosts ? "show my posts" : "show all posts"}</button>
         <Search type="posts" searchItems={["id", "title"]} setItems={setPosts} items={posts} displayChanged={displayChanged} />
-        <AddItem key='posts' keys={postAttributes} type='posts'  addDisplay={addPosts} setDisplayChanged={setDisplayChanged} />
+        <AddItem key='posts' keys={postAttributes} type='posts'  addDisplay={addPosts} setDisplayChanged={setDisplayChanged} defaltValues={{userId:id}}/>
         {posts && posts.map((post) => { return <Post key={post.id} post={post} /> }
         )}
       </div>
