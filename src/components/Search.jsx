@@ -11,20 +11,16 @@ function Search({ type, searchItems, setItems, items, displayChanged }) {
     const { id } = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
 
-    // Get the current value for the selected attribute from the URL
     const searchValue = searchParams.get(attribute) || "";
 
     const searchItemsArray = async (inputValue) => {
-        // Update the URL with the attribute and its value
         setSearchParams({ [attribute]: inputValue });
 
-        // Fetch fresh data only once
         if (!firstSearch) {
             setFirstSearch(true);
             setAllItems(items);
         }
 
-        // Fetch items if the displayChanged flag is true
         if (displayChanged) {
             const fetchedItems = await fetchData(type, id);
             setAllItems(fetchedItems);
