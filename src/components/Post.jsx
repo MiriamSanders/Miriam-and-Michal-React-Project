@@ -1,7 +1,7 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/post.css';
-import { useParams,useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { PostsContext } from "./Posts";
 import { userContext } from "./App";
 import Update from "./Update";
@@ -19,35 +19,36 @@ function Post({ post }) {
     const { updatePosts, deletePosts, setDisplayChanged } = useContext(PostsContext);
     const { userData } = useContext(userContext);
     const attributes = ["name", "body"];
-    const location =useLocation();
+    const location = useLocation();
     function showPostFunction() {
         setShowPost(true);
         navigate(`/home/users/${id}/posts/${post.id}`);
     }
-    useEffect(()=>{
-        const hasPath= location.pathname.includes("comments");
-        if(hasPath){
-            showComments();
-        }
-    },[location.pathname])
+    useEffect(() => {
+        (async function () {
+            const hasPath = location.pathname.includes("comments");
+            if (hasPath) {
+                try {
+                    const response = await fetch(
+                        `http://localhost:3000/comments/?postId=${id}`
+                    );
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    const result = await response.json();
+                    if (result.length > 0) {
+                        setComments(result);
+                    }
+                }
+                catch (ex) {
+
+                }
+            }
+
+        })();
+    }, [location.pathname])
     async function showComments() {
-        try {
-            const response = await fetch(
-                `http://localhost:3000/comments/?postId=${id}`
-            );
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            const result = await response.json();
-
-            if (result.length > 0) {
-                setComments(result);
-                navigate(`/home/users/${id}/posts/${post.id}/comments`);
-            }
-        }
-        catch (ex) {
-
-        }
+        navigate(`/home/users/${id}/posts/${post.id}/comments`);
     }
     return (
         <>
@@ -64,13 +65,13 @@ function Post({ post }) {
             )}
             {showPost && (<div className="overlay">
                 <div className="postContainer modal">
-                    <button onClick={()=>{setShowPost(false); navigate(`/home/users/${id}/posts`); }}> x</button>
+                    <button onClick={() => { setShowPost(false); navigate(`/home/users/${id}/posts`); }}> x</button>
                     <h6 className="postTitle">{post.title}</h6>
                     <p className="postData">{post.body}</p>
                     <button onClick={showComments}>Show Comments</button>
-                    <CommentContext.Provider value={{ updateComments, deleteComments }}> <div> <AddItem keys={attributes} type="comments"  addDisplay={addComments} defaltValues={{email:userData.email,postId:post.id}}/>{comments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>}</div></CommentContext.Provider>
+                    <CommentContext.Provider value={{ updateComments, deleteComments }}> <div> <AddItem keys={attributes} type="comments" addDisplay={addComments} defaltValues={{ email: userData.email, postId: post.id }} />{comments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}</div>}</div></CommentContext.Provider>
                 </div>
-                </div>
+            </div>
             )}
         </>
     );
