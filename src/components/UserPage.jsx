@@ -1,7 +1,7 @@
 import React, { useContext,useEffect } from "react";
 import { Routes, Route, Link, Outlet,useParams ,useNavigate} from "react-router-dom";
 import UserData from "./UserData";
-import Posts from "./posts";
+import Posts from "./Posts";
 import Todos from "./todos";
 import Albums from "./Albums";
 import { userContext } from "./App";
@@ -10,7 +10,7 @@ function UserPage() {
   const navigate = useNavigate();
    const {userData} =useContext(userContext);
    useEffect(()=>{if (userData?.id !== id) {
-    //localStorage.removeItem("currentUser"); // Clear the current user
+    //localStorage.remonnnnveItem("currentUser"); // Clear the current user
     navigate("/login", { replace: true }); // Redirect to the login page
   }},[id])
   return (
