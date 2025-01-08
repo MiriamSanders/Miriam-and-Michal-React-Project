@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 import Todo from "./Todo";
 import AddItem from "./AddItem";
 import Search from "./Search";
-
 import { fetchData } from "../js-files/GeneralRequests";
 import useHandleDisplay from "./useHandleDisplay";
 import "../css/sort.css"
@@ -40,8 +39,6 @@ function Todos({ id }) {
             return sortedTodos;
         });
     }
-
-
 
     return (
         <DisplayContext.Provider value={{ updateTodo, deleteTodo }}>

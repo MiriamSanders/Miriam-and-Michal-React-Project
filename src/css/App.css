@@ -12,9 +12,9 @@ body {
   padding: 0;
   background-color: #f9f9f9;
   background-image: url('../assets/petals-near-bright-gerberas.jpg');
-  /* background-repeat: no-repeat; */
+  background-attachment: fixed;  
   background-size: cover;
-  
+  min-height: 100vh;
   color: #370810;
 }
 

@@ -8,9 +8,10 @@ import Delete from "./Delete";
 import AddItem from "./AddItem";
 import "../css/album.css";
 export const PhotoContext = createContext();
+
 function Album({ album }) {
     const [photos, setPhotos, updatePhotos, deletePhotos, addPhotos] = useHandleDisplay([]);
-    const [showPhotos,setShowPhotos]=useState(false);
+    const [showPhotos, setShowPhotos] = useState(false);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [photoPage, setPhotoPage] = useState(1);
@@ -18,6 +19,7 @@ function Album({ album }) {
     const { id } = useParams();
     const navigate = useNavigate();
     const attributes = ["title", "url", "thumbnailUrl"];
+
     async function openAlbumPhotos() {
         setLoading(true);
         setError(null);
@@ -46,7 +48,6 @@ function Album({ album }) {
             <p className="albumTitle">{album.title}</p>
             <Update item={album} type='albums' updateDisplay={updateAlbums} />
             <Delete id={album.id} type='albums' deleteDisplay={deleteAlbums} />
-
             <button onClick={openAlbumPhotos} disabled={loading}>
                 {photoPage === 1 ? "show photos" : "Load More Photos"}
             </button>
@@ -54,13 +55,15 @@ function Album({ album }) {
             <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}><div>
                 <AddItem keys={attributes} type="photos" display={false} addDisplay={addPhotos} />
                 {showPhotos && <div className="photoContainer">
-                    <button onClick={()=>{setShowAlbum(false); navigate(`/home/users/${id}/albums`); }}> x</button>
-                    {photos.map((item) => {
-                        return <Photo
-                            key={item.id}
-                            photo={item}
-                        />
-                    })}
+                    <button className="close-btn" onClick={() => { setShowPhotos(false); navigate(`/home/users/${id}/albums`); }}> x</button>
+                    <div className="photos-grid">
+                        {photos.map((item) => {
+                            return <Photo
+                                key={item.id}
+                                photo={item}
+                            />
+                        })}
+                    </div>
                 </div>}
             </div>
             </PhotoContext.Provider>
