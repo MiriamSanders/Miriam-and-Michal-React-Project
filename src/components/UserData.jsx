@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import '../css/userData.css'
-import Update from "./Update";
-function UserData({ id }) {
-  const [user, setUser] = useState(null); 
-  const [error, setError] = useState(null); 
-  const [loading, setLoading] = useState(true);  
+import React, { useState, useEffect } from "react";
+import "../css/userData.css";
+
+function UserData({ id, onClose }) {
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -14,18 +15,18 @@ function UserData({ id }) {
         }
         const result = await response.json();
         if (result.length > 0) {
-          setUser(result[0]); 
+          setUser(result[0]);
         } else {
           throw new Error("No user found with that ID");
         }
       } catch (error) {
         setError(error.message);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
-    fetchData();  
+    fetchData();
   }, [id]);
 
   if (loading) {
@@ -37,7 +38,12 @@ function UserData({ id }) {
   }
 
   return (
-    <div className="displayUserData">
+    <div className="user-card">
+      {onClose && (
+        <button onClick={onClose} className="close-btn">
+          X
+        </button>
+      )}
       <h1>{user.name} Details</h1>
       <p><strong>Name:</strong> {user.name}</p>
       <p><strong>Username:</strong> {user.username}</p>
@@ -51,7 +57,7 @@ function UserData({ id }) {
       <p><strong>Longitude:</strong> {user.address.geo.lng}</p>
       <h2>Phone & Website</h2>
       <p><strong>Phone:</strong> {user.phone}</p>
-      <p><strong>Website:</strong>{user.website}</p>
+      <p><strong>Website:</strong> {user.website}</p>
       <h2>Company</h2>
       <p><strong>Company Name:</strong> {user.company.name}</p>
       <p><strong>Catchphrase:</strong> {user.company.catchPhrase}</p>
@@ -61,3 +67,4 @@ function UserData({ id }) {
 }
 
 export default UserData;
+
