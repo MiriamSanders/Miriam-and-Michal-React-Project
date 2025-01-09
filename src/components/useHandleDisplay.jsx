@@ -13,7 +13,12 @@ export default function useHandleDisplay(initialItems = null) {
     };
 
     const addItem = (newItem) => {
-        setItems((prevItems) => [...prevItems, newItem]);
+        if(!items)
+        {
+            setItems([newItem]);
+        }
+        else
+        {setItems((prevItems) => [...prevItems, newItem]);}
     };
 
     return [items, setItems, updateItem, deleteItem, addItem];

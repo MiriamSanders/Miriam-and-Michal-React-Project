@@ -17,7 +17,7 @@ function Login({ usernameRef }) {
                 setUserData(user[0]);
                 localStorage.setItem("currentUser",JSON.stringify(user[0])
                 );
-                navigate(`/home/users/${user[0].id}`);
+                navigate(`/home`);
             } else {
                 alert('Incorrect password');
             }

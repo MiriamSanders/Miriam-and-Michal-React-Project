@@ -306,7 +306,7 @@ function Signup({ usernameRef }) {
                 let createdUser = await response.json();
                 setUserData(createUser);
                 localStorage.setItem("currentUser", JSON.stringify(createdUser));
-                navigate(`/home/users/${createdUser.id}`);
+                navigate(`/home`);
             }
         } catch (ex) {
             console.error("Error creating user:", ex);

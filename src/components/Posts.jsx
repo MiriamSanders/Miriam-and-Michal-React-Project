@@ -8,7 +8,7 @@ export const PostsContext = createContext();
 function Posts({ id }) {
   const [showPosts, setShowPosts] = useState(false);
   const [displayChanged, setDisplayChanged] = useState(false);
-  const [posts, setPosts, updatePosts, deletePosts, addPosts] = useHandleDisplay(null);
+  const [posts, setPosts, updatePosts, deletePosts, addPosts] = useHandleDisplay([]);
   let postAttributes = ['title', 'body'];
   useEffect(() => {
     const fetchPosts = async () => {

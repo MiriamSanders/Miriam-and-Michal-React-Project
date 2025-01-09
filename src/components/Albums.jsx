@@ -6,7 +6,7 @@ import { fetchData } from "../js-files/GeneralRequests";
 import useHandleDisplay from "./useHandleDisplay";
 export const AlbumsContext = createContext();
 function Albums({ id }) {
-    const [albums, setAlbums, updateAlbums, deleteAlbums, addAlbums] = useHandleDisplay(null);
+    const [albums, setAlbums, updateAlbums, deleteAlbums, addAlbums] = useHandleDisplay([]);
 
     let albumAttributes = ['title'];
 

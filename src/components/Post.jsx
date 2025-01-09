@@ -13,17 +13,16 @@ export const CommentContext = createContext();
 function Post({ post }) {
     const navigate = useNavigate();
     const { id, postid } = useParams();
-    console.log(id, postid);
     const [showPost, setShowPost] = useState(postid == post.id ? true : false);
     const [showComments, setShowComments] = useState(false);
-    const [comments, setComments, updateComments, deleteComments, addComments] = useHandleDisplay(null);
+    const [comments, setComments, updateComments, deleteComments, addComments] = useHandleDisplay([]);
     const { updatePosts, deletePosts, setDisplayChanged } = useContext(PostsContext);
     const { userData } = useContext(userContext);
     const attributes = ["name", "body"];
     const location = useLocation();
     function showPostFunction() {
         setShowPost(true);
-        navigate(`/home/users/${id}/posts/${post.id}`);
+        navigate(`/users/${id}/posts/${post.id}`);
     }
     useEffect(() => {
         (async function () {
@@ -50,7 +49,7 @@ function Post({ post }) {
         })();
     }, [location.pathname])
     async function navigateToComments() {
-        navigate(`/home/users/${id}/posts/${post.id}/comments`);
+        navigate(`/users/${id}/posts/${post.id}/comments`);
     }
     return (
         <>
@@ -70,7 +69,7 @@ function Post({ post }) {
                     <button onClick={() => {
                         setShowPost(false);
                         setShowComments(false);
-                        navigate(`/home/users/${id}/posts`);
+                        navigate(`/users/${id}/posts`);
                     }}> x</button>
                     <h6 className="postTitle">{post.title}</h6>
                     <p className="postData">{post.body}</p>

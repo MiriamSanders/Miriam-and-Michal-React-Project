@@ -38,7 +38,7 @@ function Album({ album }) {
         } finally {
             setLoading(false);
             setPhotoPage((prevPhotoPage) => prevPhotoPage + 1);
-            navigate(`/home/users/${id}/albums/${album.id}/photos`);
+            navigate(`/users/${id}/albums/${album.id}/photos`);
         }
     }
 
@@ -55,7 +55,7 @@ function Album({ album }) {
             <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}><div>
                 <AddItem keys={attributes} type="photos"  addDisplay={addPhotos} defaltValues={{albumId:album.id}}/>
                 {showPhotos && <div className="photoContainer">
-                    <button className="close-btn" onClick={() => { setShowPhotos(false); navigate(`/home/users/${id}/albums`); }}> x</button>
+                    <button className="close-btn" onClick={() => { setShowPhotos(false); navigate(`/users/${id}/albums`); }}> x</button>
                     <div className="photos-grid">
                         {photos.map((item) => {
                             return <Photo
