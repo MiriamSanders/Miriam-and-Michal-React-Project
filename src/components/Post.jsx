@@ -59,32 +59,59 @@ function Post({ post }) {
     return (
         <>
             {!showPost && (
-                <div className="postContainer">
-                    <p>{post.id}</p>
-                    <p>{post.title}</p>
-                    {post.userId == userData.id && <div>
-                        <Update item={post} type='posts' updateDisplay={updatePosts} setDisplayChanged={setDisplayChanged} />
-                        <Delete id={post.id} type='posts' deleteDisplay={deletePosts} setDisplayChanged={setDisplayChanged} />
-                    </div>}
-                    <button onClick={showPostFunction}>Show Post</button>
-                </div>
-            )}
-            {showPost && (<div className="overlay">
-                <div className="postContainer modal">
-                    <button onClick={() => {
-                        setShowPost(false);
-                        setShowComments(false);
-                        navigate(`/users/${id}/posts`);
-                    }}> x</button>
-                    <h6 className="postTitle">{post.title}</h6>
-                    <p className="postData">{post.body}</p>
-                    <button onClick={navigateToComments}>Show Comments</button>
-                    <CommentContext.Provider value={{ updateComments, deleteComments }}> <div> <AddItem keys={attributes} type="comments" addDisplay={addComments} defaltValues={{ email: userData.email, postId: post.id }} />{
+  <div className="postContainer">
+    <p>{post.id}</p>
+    <p>{post.title}</p>
+    <div className="actions">
+      <div className="right-actions">
+        {post.userId == userData.id && (
+          <>
+            <Update
+              item={post}
+              type="posts"
+              updateDisplay={updatePosts}
+              setDisplayChanged={setDisplayChanged}
+            />
+            <Delete
+              id={post.id}
+              type="posts"
+              deleteDisplay={deletePosts}
+              setDisplayChanged={setDisplayChanged}
+            />
+          </>
+        )}
+      </div>
+      <button onClick={showPostFunction}>Show Post</button>
+    </div>
+  </div>
+)}
+
+            {showPost && (
+  <div className="overlay">
+    <div className="postContainer modal">
+      <button
+        className="close-button"
+        onClick={() => {
+          setShowPost(false);
+          setShowComments(false);
+          navigate(`/users/${id}/posts`);
+        }}
+      >
+        x
+      </button>
+      <h6 className="postTitle">{post.title}</h6>
+      <p className="postData">{post.body}</p>
+      <div className="actions">
+        <button onClick={navigateToComments}>Show Comments</button>
+        <button onClick={() => console.log("Another Action")}>Another Button</button>
+        <CommentContext.Provider value={{ updateComments, deleteComments }}> <div> <AddItem keys={attributes} type="comments" addDisplay={addComments} defaltValues={{ email: userData.email, postId: post.id }} />{
                         showComments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}
                         </div>}</div></CommentContext.Provider>
-                </div>
-            </div>
-            )}
+      </div>
+    </div>
+  </div>
+)}
+
         </>
     );
 }

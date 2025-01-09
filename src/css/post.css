@@ -47,28 +47,53 @@
 }
 
 .postContainer button:hover {
-  background-color: #c01532;
+  background-color: #a0122b;
 }
 
 .postContainer button:focus {
   outline: none;
 }
 
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.actions .right-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.actions .show-post-button {
+  padding: 8px 15px;
+  font-size: 1rem;
+  background-color: #c01532;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.actions .show-post-button:hover {
+  background-color: #a0122b;
+}
+
+.actions .show-post-button:focus {
+  outline: none;
+}
+
 .comment-container {
   height: 300px;
-  /* Set a fixed height */
   overflow-y: scroll;
-  /* Enable scrolling for overflow content */
   border: 1px solid #ccc;
-  /* Optional: Add a border for better visibility */
   border-radius: 5px;
-  /* Optional: Rounded corners */
   padding: 10px;
-  /* Add some padding for spacing */
   background-color: #f9f9f9;
-  /* Optional: Light background color */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Optional: Add shadow for aesthetics */
 }
 
 .overlay {
@@ -92,13 +117,96 @@
   max-width: 500px;
   width: 90%;
   text-align: center;
+  position: relative;
 }
 
-.show-posts {
+.modal button:focus {
+  outline: none;
+}
+
+.comment-button {
   padding: 10px 15px;
   background-color: #c01532;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.comment-button:hover {
+  background-color: #a0122b;
+}
+
+.comment-button:focus {
+  outline: none;
+}
+
+.modal button {
+  padding: 8px 15px;
+  font-size: 1rem;
+  background-color: #ffcccc;
+  color: #5b4347;
+  border: 2px solid #b4132e;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modal button:hover {
+  background-color: #f0c0c0;
+}
+
+.close-button {
+  background-color: transparent !important;
+  color: #c01532;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: transparent !important;
+  color: #c01532;
+}
+
+.close-button:focus {
+  outline: none;
+}
+
+.modal .close-button {
+  border: none;
+}
+
+.show-posts {
+  padding: 8px 15px;
+  font-size: 1rem;
+  background-color: #c01532;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.show-posts:hover {
+  background-color: #a0122b;
+}
+
+.show-posts:focus {
+  outline: none;
+}
+
+
+.modal .actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
 }
