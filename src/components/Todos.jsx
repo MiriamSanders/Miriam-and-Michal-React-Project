@@ -8,6 +8,7 @@ import "../css/sort.css"
 export const DisplayContext = createContext();
 function Todos({ id }) {
     const [todos, setTodos, updateTodo, deleteTodo, addTodo] = useHandleDisplay(null);
+    const [displayChanged, setDisplayChanged] = useState(false);
     let todoAttributes = ['title'];
     let sortAttributes = ['id', 'title', 'completed', 'random'];
 
@@ -41,9 +42,9 @@ function Todos({ id }) {
     }
 
     return (
-        <DisplayContext.Provider value={{ updateTodo, deleteTodo }}>
+        <DisplayContext.Provider value={{ updateTodo, deleteTodo,setDisplayChanged }}>
             <div >
-            <Search type="todos" searchItems={["id", "title", "completed"]} setItems={setTodos} items={todos} displayChanged={false} />
+                <Search type="todos" searchItems={["id", "title", "completed"]} setItems={setTodos} items={todos} displayChanged={displayChanged} setDisplayChanged={setDisplayChanged}/>
                 <div className="sort-container">
                     <h2>sort by:</h2>
                     <select id="dropdown" onChange={(e) => sortByAttributes(e.target.value)}>
@@ -53,7 +54,7 @@ function Todos({ id }) {
                         ))}
                     </select>
                 </div>
-                <AddItem key="todos" keys={todoAttributes} type="todos"  addDisplay={addTodo} defaltValues={{userId:id,completed:false}} />
+                <AddItem key="todos" keys={todoAttributes} type="todos" addDisplay={addTodo} defaltValues={{ userId: id, completed: false }} />
                 {todos && todos.map((todo) => <Todo key={todo.id} todo={todo} />)}
             </div>
         </DisplayContext.Provider>

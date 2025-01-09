@@ -4,7 +4,7 @@ import { useSearchParams, useParams } from "react-router-dom";
 import { fetchData } from "../js-files/GeneralRequests";
 import "../css/search.css";
 
-function Search({ type, searchItems, setItems, items, displayChanged }) {
+function Search({ type, searchItems, setItems, items, displayChanged,setDisplayChanged }) {
     const [attribute, setAttribute] = useState("id");
     const [allItems, setAllItems] = useState(items);
     const [firstSearch, setFirstSearch] = useState(false);
@@ -24,6 +24,7 @@ function Search({ type, searchItems, setItems, items, displayChanged }) {
         if (displayChanged) {
             const fetchedItems = await fetchData(type, id);
             setAllItems(fetchedItems);
+            setDisplayChanged(false);
         }
 
         // Filter the items based on the search value

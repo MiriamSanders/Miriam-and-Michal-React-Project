@@ -58,8 +58,8 @@ function Post({ post }) {
                     <p>{post.id}</p>
                     <p>{post.title}</p>
                     {post.userId == userData.id && <div>
-                        <Update item={post} type='posts' updateDisplay={updatePosts} />
-                        <Delete id={post.id} type='posts' deleteDisplay={deletePosts} />
+                        <Update item={post} type='posts' updateDisplay={updatePosts} setDisplayChanged={setDisplayChanged}/>
+                        <Delete id={post.id} type='posts' deleteDisplay={deletePosts} setDisplayChanged={setDisplayChanged} />
                     </div>}
                     <button onClick={showPostFunction}>Show Post</button>
                 </div>
