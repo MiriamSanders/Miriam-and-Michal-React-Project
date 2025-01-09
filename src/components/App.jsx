@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login usernameRef={usernameRef} />} />
         <Route path="/signup" element={<Signup usernameRef={usernameRef} />} />
-        <Route path="/home" element={<UserPage />} />
+        <Route path="/home/*" element={<UserPage />} />
         <Route path="/users/:id/*" element={<UserPage />} />
         <Route path="*" element={<h1>404: Page Not Found</h1>} />
       </Routes>

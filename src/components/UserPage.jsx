@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import UserData from "./UserData";
 import Posts from "./Posts";
-import Todos from "./Todos";
+import Todos from "./todos";
 import Albums from "./Albums";
 import "../css/UserPage.css";
 import { userContext } from "./App";
@@ -71,6 +71,8 @@ function UserPage() {
         {/* <Route path="/" element={<h2>Welcome to {userData?.username || "User"}'s Dashboard</h2>} /> */}
         <Route path="/info" element={<UserData id={userData.id} />} />
         <Route path="/posts" element={<Posts id={userData.id} />} />
+        <Route path="/posts/:postid" element={<Posts id={userData.id} />} />
+        <Route path="/posts/:postid/*" element={<Posts id={userData.id} />} />
         <Route path="/todos" element={<Todos id={userData.id} />} />
         <Route path="/albums/*" element={<Albums id={userData.id} />} />
         <Route path="*" element={<h2>Sub-Page Not Found</h2>} />
