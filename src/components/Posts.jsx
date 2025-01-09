@@ -4,6 +4,7 @@ import AddItem from "./AddItem";
 import { fetchData } from "../js-files/GeneralRequests";
 import useHandleDisplay from "./useHandleDisplay";
 import Search from "./Search";
+import '../css/post.css';
 export const PostsContext = createContext();
 function Posts({ id }) {
   const [showPosts, setShowPosts] = useState(false);

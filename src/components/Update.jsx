@@ -39,7 +39,7 @@ function Update({ item, type,updateDisplay ,setDisplayChanged}) {
 
     return (
         <>
-            <FaPen onClick={() => setShowUpdateDetails(true)} />
+            <FaPen className="edit-icon" onClick={() => setShowUpdateDetails(true)} />
             {showUpdateDetails && (
                 <div className="overlay">
                     <div className="modal">

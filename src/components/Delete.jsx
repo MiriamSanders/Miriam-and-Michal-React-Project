@@ -22,7 +22,7 @@ function Delete({ id, type,deleteDisplay ,setDisplayChanged}) {
         }
     }
     return (<>
-        <FaTrash className="edit-icon" onClick={deleteItem}></FaTrash>
+        <FaTrash className="delete-icon" onClick={deleteItem}></FaTrash>
     </>
 
     )
