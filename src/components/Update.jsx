@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { FaPen } from "react-icons/fa";
 import "../css/Update.css"
 
-function Update({ item, type,updateDisplay ,setDisplayChanged}) {
+function Update({ item, type, updateDisplay, setDisplayChanged }) {
     const [showUpdateDetails, setShowUpdateDetails] = useState(false);
     const [updatedItem, setUpdatedItem] = useState(item);
 
@@ -26,7 +26,8 @@ function Update({ item, type,updateDisplay ,setDisplayChanged}) {
             if (response.ok) {
                 updateDisplay(updatedData);
                 setShowUpdateDetails(false);
-                setDisplayChanged(true);            }
+                setDisplayChanged(true);
+            }
         } catch (ex) {
             console.log(ex);
         }

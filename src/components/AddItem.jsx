@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import "../css/AddItem.css";
 
-function AddItem({ keys, type, addDisplay,defaltValues ,setDisplayChanged}) {
+function AddItem({ keys, type, addDisplay,defaltValues ,setDisplayChanged=null}) {
     const { id } = useParams();
     const [showAddItem, setShowAddItem] = useState(false);
     const [item, setItem] = useState(defaltValues);
