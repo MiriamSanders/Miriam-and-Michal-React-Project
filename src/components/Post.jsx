@@ -28,21 +28,26 @@ function Post({ post }) {
         (async function () {
             const hasPath = location.pathname.includes("comments");
             if (hasPath) {
-                try {
-                    const response = await fetch(
-                        `http://localhost:3000/comments/?postId=${id}`
-                    );
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
-                    const result = await response.json();
-                    if (result.length > 0) {
-                        setComments(result);
-                        setShowComments(true);
-                    }
+                if (comments.length>0) {
+                    setShowComments(true);
                 }
-                catch (ex) {
+                else {
+                    try {
+                        const response = await fetch(
+                            `http://localhost:3000/comments/?postId=${id}`
+                        );
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+                        const result = await response.json();
+                        if (result.length > 0) {
+                            setComments(result);
+                            setShowComments(true);
+                        }
+                    }
+                    catch (ex) {
 
+                    }
                 }
             }
 
@@ -58,7 +63,7 @@ function Post({ post }) {
                     <p>{post.id}</p>
                     <p>{post.title}</p>
                     {post.userId == userData.id && <div>
-                        <Update item={post} type='posts' updateDisplay={updatePosts} setDisplayChanged={setDisplayChanged}/>
+                        <Update item={post} type='posts' updateDisplay={updatePosts} setDisplayChanged={setDisplayChanged} />
                         <Delete id={post.id} type='posts' deleteDisplay={deletePosts} setDisplayChanged={setDisplayChanged} />
                     </div>}
                     <button onClick={showPostFunction}>Show Post</button>

@@ -21,6 +21,11 @@ function Album({ album }) {
     const attributes = ["title", "url", "thumbnailUrl"];
 
     async function openAlbumPhotos() {
+        if (photos.length>0&&photoPage==1) { 
+            setShowPhotos(true); 
+            navigate(`/users/${id}/albums/${album.id}/photos`);
+            return; 
+        }
         setLoading(true);
         setError(null);
         try {
