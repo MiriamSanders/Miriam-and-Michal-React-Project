@@ -4,6 +4,7 @@ import UserData from "./UserData";
 import Posts from "./Posts";
 import Todos from "./Todos";
 import Albums from "./Albums";
+import "../css/UserPage.css";
 import { userContext } from "./App";
 
 function UserPage() {
@@ -27,8 +28,8 @@ function UserPage() {
     <>
       <div className="nav-container">
         <nav className="left-nav">
-          <a 
-            href="#" 
+          <a
+            href="#"
             onClick={(event) => {
               event.preventDefault();
               toggleVisibility();
@@ -63,8 +64,11 @@ function UserPage() {
         </div>
       )}
 
-      <Routes>
-        <Route path="/" element={<h2>Welcome to {userData?.username || "User"}'s Dashboard</h2>} />
+      <Routes><Route
+        path="/"
+        element={<div className="animated-title">Welcome to {userData?.username || "User"}'s Dashboard</div>}
+      />
+        {/* <Route path="/" element={<h2>Welcome to {userData?.username || "User"}'s Dashboard</h2>} /> */}
         <Route path="/info" element={<UserData id={userData.id} />} />
         <Route path="/posts" element={<Posts id={userData.id} />} />
         <Route path="/todos" element={<Todos id={userData.id} />} />

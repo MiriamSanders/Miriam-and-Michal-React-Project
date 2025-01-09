@@ -16,14 +16,6 @@ function App() {
         <Link to="/login">Login</Link>
         <Link to="/signup">SignUp</Link>
       </nav>}
-      {/* <Routes >
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path='/login' element={<Login usernameRef={usernameRef} />} />
-        <Route path='/signup' element={<Signup usernameRef={usernameRef} />} />
-        <Route path='/home/users/:id/*' element={<UserPage />}>
-        </Route>
-        <Route path="*" element={<h1>404: Page Not Found</h1>} />
-      </Routes> */}
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login usernameRef={usernameRef} />} />
