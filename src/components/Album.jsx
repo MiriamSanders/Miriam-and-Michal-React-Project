@@ -15,7 +15,7 @@ function Album({ album }) {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [photoPage, setPhotoPage] = useState(1);
-    const { updateAlbums, deleteAlbums } = useContext(AlbumsContext);
+    const { updateAlbums, deleteAlbums,setDisplayChanged } = useContext(AlbumsContext);
     const { id } = useParams();
     const navigate = useNavigate();
     const attributes = ["title", "url", "thumbnailUrl"];
@@ -46,8 +46,8 @@ function Album({ album }) {
         <div className="albumContainer">
             <p className="albumId">{album.id}</p>
             <p className="albumTitle">{album.title}</p>
-            <Update item={album} type='albums' updateDisplay={updateAlbums} />
-            <Delete id={album.id} type='albums' deleteDisplay={deleteAlbums} />
+            <Update item={album} type='albums' updateDisplay={updateAlbums} setDisplayChanged={setDisplayChanged} />
+            <Delete id={album.id} type='albums' deleteDisplay={deleteAlbums} setDisplayChanged={setDisplayChanged} />
             <button onClick={openAlbumPhotos} disabled={loading}>
                 {photoPage === 1 ? "show photos" : "Load More Photos"}
             </button>

@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { FaTrash } from "react-icons/fa";
 import '../css/Delete.css'
 
-function Delete({ id, type,deleteDisplay }) {
+function Delete({ id, type,deleteDisplay ,setDisplayChanged}) {
     async function deleteItem() {
         try {
             let response = await fetch(`http://localhost:3000/${type}/${id}`, {
@@ -13,6 +13,7 @@ function Delete({ id, type,deleteDisplay }) {
             });
             if (response.ok) {
                 deleteDisplay(id);
+                setDisplayChanged(true);
             }
         }
         catch (error) {

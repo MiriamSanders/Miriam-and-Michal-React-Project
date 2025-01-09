@@ -7,6 +7,7 @@ import useHandleDisplay from "./useHandleDisplay";
 export const AlbumsContext = createContext();
 function Albums({ id }) {
     const [albums, setAlbums, updateAlbums, deleteAlbums, addAlbums] = useHandleDisplay([]);
+    const [displayChanged,setDisplayChanged]=useState(false);
 
     let albumAttributes = ['title'];
 
@@ -18,9 +19,9 @@ function Albums({ id }) {
     }, [id]);
 
     return (
-        <AlbumsContext.Provider value={{ updateAlbums, deleteAlbums }}>
+        <AlbumsContext.Provider value={{ updateAlbums, deleteAlbums,setDisplayChanged }}>
             <div>
-                <Search type="albums" searchItems={["id", "title"]} setItems={setAlbums} items={albums} displayChanged={false} />
+                <Search type="albums" searchItems={["id", "title"]} setItems={setAlbums} items={albums} displayChanged={displayChanged} setDisplayChanged={setDisplayChanged}/>
                 <AddItem key="albums" keys={albumAttributes} type="albums"  addDisplay={addAlbums}defaltValues={{userId:id}}/>
                 {albums && albums.map((album) => <Album key={album.id} album={album} />)}
             </div>

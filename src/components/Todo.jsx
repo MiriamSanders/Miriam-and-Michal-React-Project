@@ -6,7 +6,7 @@ import Update from "./Update";
 import Delete from "./Delete";
 function Todo({ todo }) {
    const [checked, setChecked] = useState(todo.completed);
-   const { updateTodo,deleteTodo } = useContext(DisplayContext);
+   const { updateTodo, deleteTodo, setDisplayChanged } = useContext(DisplayContext);
 
    const handleCheckboxChange = async () => {
       setChecked(!checked);
@@ -18,7 +18,7 @@ function Todo({ todo }) {
                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-               completed: !checked, 
+               completed: !checked,
             }),
          });
 
@@ -43,8 +43,8 @@ function Todo({ todo }) {
          />
          <p className="todo-id">{todo.id}</p>
          <p className={`todo-title ${checked ? 'completed' : ''}`}>{todo.title}</p>
-     <Update item={{id:todo.id,title:todo.title}} type='todos' updateDisplay={updateTodo}/>
-        <Delete id={todo.id} type='todos' deleteDisplay={deleteTodo}/>
+         <Update item={{ id: todo.id, title: todo.title }} type='todos' updateDisplay={updateTodo} setDisplayChanged={setDisplayChanged} />
+         <Delete id={todo.id} type='todos' deleteDisplay={deleteTodo} setDisplayChanged={setDisplayChanged} />
       </div>
    );
 }

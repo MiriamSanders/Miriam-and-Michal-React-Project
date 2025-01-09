@@ -29,7 +29,7 @@ function Posts({ id }) {
   return (
     <PostsContext.Provider value={{ updatePosts, deletePosts, displayChanged, setDisplayChanged }}>
       <div>
-        <Search type="posts" searchItems={["id", "title"]} setItems={setPosts} items={posts} displayChanged={displayChanged} />
+        <Search type="posts" searchItems={["id", "title"]} setItems={setPosts} items={posts} displayChanged={displayChanged} setDisplayChanged={setDisplayChanged} />
         <button className="show-posts"onClick={fatchAllPosts}>{showPosts ? "show my posts" : "show all posts"}</button>
         <AddItem key='posts' keys={postAttributes} type='posts'  addDisplay={addPosts} setDisplayChanged={setDisplayChanged} defaltValues={{userId:id}}/>
         {posts && posts.map((post) => { return <Post key={post.id} post={post} /> }

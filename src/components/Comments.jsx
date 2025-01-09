@@ -5,6 +5,7 @@ import { fetchData } from "./GeneralRequests";
 
 function Comments({ id }) {
     const [comments, setComments] = useState(null);
+    const [displayChanged,setDisplayChanged]=useState(false);
     let commentAttributes = ['name', 'email', 'body'];
 
     useEffect(() => {
