@@ -55,7 +55,7 @@ function Album({ album }) {
             <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}><div>
                 <AddItem keys={attributes} type="photos"  addDisplay={addPhotos} defaltValues={{albumId:album.id}}/>
                 {showPhotos && <div className="photoContainer">
-                    <button className="close-btn" onClick={() => { setShowPhotos(false); navigate(`/users/${id}/albums`); }}> x</button>
+                    <button className="close-btn" onClick={() => { setShowPhotos(false); navigate(`/users/${id}/albums`);setPhotoPage(1); }}> x</button>
                     <div className="photos-grid">
                         {photos.map((item) => {
                             return <Photo
