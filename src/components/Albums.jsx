@@ -22,7 +22,7 @@ function Albums({ id }) {
         <AlbumsContext.Provider value={{ updateAlbums, deleteAlbums,setDisplayChanged }}>
             <div>
                 <Search type="albums" searchItems={["id", "title"]} setItems={setAlbums} items={albums} displayChanged={displayChanged} setDisplayChanged={setDisplayChanged}/>
-                <AddItem key="albums" keys={albumAttributes} type="albums"  addDisplay={addAlbums}defaltValues={{userId:id}}/>
+                <AddItem key="albums" keys={albumAttributes} type="albums"  addDisplay={addAlbums}defaltValues={{userId:id} } setDisplayChanged={setDisplayChanged}/>
                 {albums && albums.map((album) => <Album key={album.id} album={album} />)}
             </div>
         </AlbumsContext.Provider>);

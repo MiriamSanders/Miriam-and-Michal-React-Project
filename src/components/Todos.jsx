@@ -43,7 +43,7 @@ function Todos({ id }) {
 
     return (
         <DisplayContext.Provider value={{ updateTodo, deleteTodo,setDisplayChanged }}>
-            <div >
+            <div className="todos-div" >
                 <Search type="todos" searchItems={["id", "title", "completed"]} setItems={setTodos} items={todos} displayChanged={displayChanged} setDisplayChanged={setDisplayChanged}/>
                 <div className="sort-container">
                     <h2>sort by:</h2>

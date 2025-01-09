@@ -51,14 +51,16 @@ function Album({ album }) {
         <div className="albumContainer">
             <p className="albumId">{album.id}</p>
             <p className="albumTitle">{album.title}</p>
+            {error && <div className="error">Error: {error}</div>}
+            <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}><div>
+                <div className="album-actions">
             <Update item={album} type='albums' updateDisplay={updateAlbums} setDisplayChanged={setDisplayChanged} />
             <Delete id={album.id} type='albums' deleteDisplay={deleteAlbums} setDisplayChanged={setDisplayChanged} />
             <button onClick={openAlbumPhotos} disabled={loading}>
                 {photoPage === 1 ? "show photos" : "Load More Photos"}
             </button>
-            {error && <div className="error">Error: {error}</div>}
-            <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}><div>
                 <AddItem keys={attributes} type="photos"  addDisplay={addPhotos} defaltValues={{albumId:album.id}}/>
+               </div>
                 {showPhotos && <div className="photoContainer">
                     <button className="close-btn" onClick={() => { setShowPhotos(false); navigate(`/users/${id}/albums`);setPhotoPage(1); }}> x</button>
                     <div className="photos-grid">

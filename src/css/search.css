@@ -1,17 +1,17 @@
 .search-container {
-     margin-top: 10vh;
+    margin-top: 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     width: 100%;
-     max-width: 400px; 
+    max-width: 400px;
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff4a; 
+    background-color: #ffffff4a;
 }
 
 .search-container h2 {
@@ -27,7 +27,7 @@
     border-radius: 4px;
     font-size: 14px;
     color: #ffffff;
-    background-color: #607d8b;
+    background-color: #c01532;
 }
 
 .search-dropdown:focus {
