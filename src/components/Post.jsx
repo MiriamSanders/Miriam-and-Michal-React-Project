@@ -27,7 +27,7 @@ function Post({ post }) {
     useEffect(() => {
         (async function () {
             const hasPath = location.pathname.includes("comments");
-            if (hasPath&&post.id==postid) {
+            if (hasPath && post.id == postid) {
                 if (comments.length > 0) {
                     setShowComments(true);
                 }
@@ -102,8 +102,7 @@ function Post({ post }) {
                         <h6 className="postTitle">{post.title}</h6>
                         <p className="postData">{post.body}</p>
                         <div className="actions">
-                            <button onClick={navigateToComments}>Show Comments</button>
-                            <button onClick={() => console.log("Another Action")}>Another Button</button>
+                            {!showComments&&<button onClick={navigateToComments}>Show Comments</button>}
                             <CommentContext.Provider value={{ updateComments, deleteComments }}>
                                 <div> <AddItem keys={attributes} type="comments" addDisplay={addComments} defaltValues={{ email: userData.email, postId: post.id }} />{
                                     showComments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}
