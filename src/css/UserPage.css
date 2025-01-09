@@ -1,26 +1,35 @@
 .animated-title {
-    font-size: 5rem;
-    font-weight: bold;
-    text-align: center;
-    background: linear-gradient(90deg, #6a1b9a, #ff8a65, #26a69a);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: colorFlow 6s infinite linear;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    overflow: hidden;
+  font-size: 5rem; /* גודל אותיות גדול יותר */
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(90deg, 
+    #ff4f81,   /* ורוד כהה */
+    #ff7b98,   /* ורוד בהיר */
+    #ff9c5b,   /* אדום בהיר */
+    #ffb76b,   /* כתום בהיר */
+    #f3f3f3,   /* אפור בהיר */
+    #ff7043,   /* כתום אדום */
+    #ff4f81    /* חזרה לורוד כהה */
+  );
+  background-size: 200% 100%; /* הגרדיאנט "גדול" יותר */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: colorFlow 12s infinite linear; /* איטרציה איטית יותר של האנימציה */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* משנה את מיקום הטקסט למעלה */
+  min-height: 65vh; /* גובה מינימלי של 100vh */
+  margin: 0; /* ללא רווחים */
+  padding-top: 10vh; /* מוסיף רווח מלמעלה כדי להרים את הטקסט */
+  overflow: hidden; /* חוסם גלילה */
+  margin-top: 7vh;
 }
 
 @keyframes colorFlow {
-    0% {
-        background-position: 200% 0;
-    }
-
-    100% {
-        background-position: -200% 0;
-    }
+  0% {
+    background-position: 200% 0; /* הגרדיאנט מתחיל מימין */
+  }
+  100% {
+    background-position: -200% 0; /* הגרדיאנט זז לשמאל */
+  }
 }
