@@ -34,6 +34,7 @@ function Login({ usernameRef }) {
     };
 
     return (
+        <div>
         <div className="login-container">
             <input
                 name="username"
@@ -51,6 +52,8 @@ function Login({ usernameRef }) {
             <button className="login-button" onClick={checkIFUserExists}>
                 Login
             </button>
+        </div>
+        <button className="switch-signup" onClick={()=>navigate('/register')}>don't have an account yet?</button>
         </div>
     );
 }

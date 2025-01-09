@@ -12,14 +12,14 @@ function App() {
   return (<userContext.Provider value={{ userData, setUserData }}>
     <Router>
 
-      {!userData && <nav id="blah">
+      {/* {!userData && <nav id="blah">
         <Link to="/login">Login</Link>
         <Link to="/signup">SignUp</Link>
-      </nav>}
+      </nav>} */}
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login usernameRef={usernameRef} />} />
-        <Route path="/signup" element={<Signup usernameRef={usernameRef} />} />
+        <Route path="/register" element={<Signup usernameRef={usernameRef} />} />
         <Route path="/home/*" element={<UserPage />} />
         <Route path="/users/:id/*" element={<UserPage />} />
         <Route path="*" element={<h1>404: Page Not Found</h1>} />

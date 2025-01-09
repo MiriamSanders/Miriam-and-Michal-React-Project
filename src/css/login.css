@@ -61,3 +61,24 @@
 .login-input.error {
     border-color: red;
 }
+.switch-signup {
+    background: none; /* No background */
+    color: #d32f2f; /* Deep red text */
+    font-size: 16px;
+    font-weight: bold;
+    border: none; /* No border */
+    cursor: pointer;
+    text-decoration: underline; /* Mimic a link */
+    padding: 0; /* Remove padding for a clean, link-like appearance */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  .switch-signup:hover {
+    color: #b71c1c; /* Darker red on hover */
+    text-decoration: none; /* Remove underline on hover */
+  }
+  
+  .switch-signup:active {
+    color: #880e0e; /* Even darker red when clicked */
+  }
+  

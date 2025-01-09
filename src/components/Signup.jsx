@@ -315,6 +315,7 @@ function Signup({ usernameRef }) {
 
     return (
         <>
+        <div>
             {!succsessfulSignUP && (
                 <div className="login-container">
                     <input 
@@ -493,6 +494,8 @@ function Signup({ usernameRef }) {
                     <button className="login-button" type="button" onClick={addUser}>Submit</button>
                 </div>
             )}
+             <button className="switch-signup" onClick={()=>navigate('/login')}>already have an account?</button>
+            </div>
         </>
     );
 }
