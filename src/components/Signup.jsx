@@ -304,7 +304,7 @@ function Signup({ usernameRef }) {
             });
             if (response.ok) {
                 let createdUser = await response.json();
-                setUserData(createUser);
+                setUserData(createdUser);
                 localStorage.setItem("currentUser", JSON.stringify(createdUser));
                 navigate(`/home`);
             }
