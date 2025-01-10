@@ -34,7 +34,7 @@ function Post({ post }) {
                 else {
                     try {
                         const response = await fetch(
-                            `http://localhost:3000/comments/?postId=${id}`
+                            `http://localhost:3000/comments/?postId=${post.id}`
                         );
                         if (!response.ok) {
                             throw new Error("Network response was not ok");
@@ -77,6 +77,7 @@ function Post({ post }) {
                                         type="posts"
                                         deleteDisplay={deletePosts}
                                         setDisplayChanged={setDisplayChanged}
+                                        dependent="comments"
                                     />
                                 </>
                             )}

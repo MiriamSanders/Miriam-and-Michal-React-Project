@@ -55,7 +55,7 @@ function Album({ album }) {
             <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}><div>
                 <div className="album-actions">
             <Update item={album} type='albums' updateDisplay={updateAlbums} setDisplayChanged={setDisplayChanged} />
-            <Delete id={album.id} type='albums' deleteDisplay={deleteAlbums} setDisplayChanged={setDisplayChanged} />
+            <Delete id={album.id} type='albums' deleteDisplay={deleteAlbums} setDisplayChanged={setDisplayChanged} dependent="photos" />
             <button onClick={openAlbumPhotos} disabled={loading}>
                 {photoPage === 1 ? "show photos" : "Load More Photos"}
             </button>
