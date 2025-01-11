@@ -55,7 +55,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   flex-grow: 0;
-  max-height: 3.5vw;
+  max-height: 2.6vw;
 }
 
 .albumContainer button:hover :not(.close-btn) {
@@ -139,12 +139,14 @@ button {
 .edit-icon {
   margin: 5px;
 }
+
 .photoContainer::-webkit-scrollbar {
   width: 8px;
 
 }
+
 .photoContainer::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  background-color:#a0122c4a;
+  background-color: #a0122c4a;
 }
