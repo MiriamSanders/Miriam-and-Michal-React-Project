@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { FaPen } from "react-icons/fa";
 import "../css/Update.css"
-
 function Update({ item, type, updateDisplay, setDisplayChanged }) {
     const [showUpdateDetails, setShowUpdateDetails] = useState(false);
     const [updatedItem, setUpdatedItem] = useState(item);
@@ -12,7 +11,6 @@ function Update({ item, type, updateDisplay, setDisplayChanged }) {
             [key]: value,
         }));
     };
-
     async function updateItem() {
         const updatedData = { ...item, ...updatedItem };
         try {
@@ -49,31 +47,22 @@ function Update({ item, type, updateDisplay, setDisplayChanged }) {
                             (key) =>
                                 key !== "id" &&
                                 key !== "userId" && (
-                                    <div key={key} style={{ marginBottom: "10px" }}>
-                                        <label
-                                            htmlFor={key}
-                                            style={{ display: "block", fontWeight: "bold" }}
-                                        >
+                                    <div key={key} className="update-div" >
+                                        <label htmlFor={key} style={{ display: "block", fontWeight: "bold" }} >
                                             {key}:
                                         </label>
-                                        <input
+                                        <input className="update-input"
                                             id={key}
                                             value={updatedItem[key]}
                                             placeholder={key}
                                             onChange={(e) =>
                                                 handleInputChange(key, e.target.value)
                                             }
-                                            style={{
-                                                width: "100%",
-                                                padding: "8px",
-                                                border: "1px solid #ccc",
-                                                borderRadius: "4px",
-                                            }}
                                         />
                                     </div>
                                 )
                         )}
-                        <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
+                        <div >
                             <button onClick={updateItem} className="btn-primary">
                                 Update
                             </button>

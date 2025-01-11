@@ -40,3 +40,15 @@
     font-size: 16px;
     margin-top: 20px;
 }
+.update-input {
+   
+        width: "100%";
+        padding: "8px";
+        border: "1px solid #ccc";
+        border-radius: "4px";
+   
+}
+.update-div{
+    margin-bottom: "10px" ;
+    padding: none;
+}

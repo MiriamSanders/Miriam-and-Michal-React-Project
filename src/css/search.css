@@ -32,6 +32,7 @@
 
 .search-dropdown:focus {
     outline: none;
+    background-color:#c01532 ;
     border-color: #ffffff;
     box-shadow: 0 0 4px rgba(255, 255, 255, 0.25);
 }

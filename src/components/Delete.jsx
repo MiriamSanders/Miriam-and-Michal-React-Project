@@ -6,7 +6,7 @@ function Delete({ id, type, deleteDisplay, setDisplayChanged, dependent }) {
     async function deleteItem() {
         try {
             if (dependent) {
-                let singularType = type.slice(0, -1); 
+                let singularType = type.slice(0, -1);
                 let dependentArrayResponse = await fetch(`http://localhost:3000/${dependent}/?${singularType}Id=${id}`);
                 if (!dependentArrayResponse.ok) {
                     throw new Error(`Failed to fetch dependent data for ${dependent}`);

@@ -4,28 +4,49 @@ import AddItem from "./AddItem";
 import Search from "./Search";
 import { fetchData } from "../js-files/GeneralRequests";
 import useHandleDisplay from "./useHandleDisplay";
+
 export const AlbumsContext = createContext();
+
 function Albums({ id }) {
     const [albums, setAlbums, updateAlbums, deleteAlbums, addAlbums] = useHandleDisplay([]);
-    const [displayChanged,setDisplayChanged]=useState(false);
+    const [displayChanged, setDisplayChanged] = useState(false);
 
-    let albumAttributes = ['title'];
+    const albumAttributes = ["title"];
 
     useEffect(() => {
         const fetchAlbums = async () => {
-            setAlbums(await fetchData('albums', id));
+            const fetchedAlbums = await fetchData("albums", id);
+            setAlbums(fetchedAlbums);
         };
         fetchAlbums();
     }, [id]);
 
     return (
-        <AlbumsContext.Provider value={{ updateAlbums, deleteAlbums,setDisplayChanged }}>
+        <AlbumsContext.Provider value={{ updateAlbums, deleteAlbums, setDisplayChanged }}>
             <div>
-                <Search type="albums" searchItems={["id", "title"]} setItems={setAlbums} items={albums} displayChanged={displayChanged} setDisplayChanged={setDisplayChanged}/>
-                <AddItem key="albums" keys={albumAttributes} type="albums"  addDisplay={addAlbums}defaltValues={{userId:id} } setDisplayChanged={setDisplayChanged}/>
-                {albums && albums.map((album) => <Album key={album.id} album={album} />)}
+                <Search
+                    type="albums"
+                    searchItems={["id", "title"]}
+                    setItems={setAlbums}
+                    items={albums}
+                    displayChanged={displayChanged}
+                    setDisplayChanged={setDisplayChanged}
+                />
+                <AddItem
+                    keys={albumAttributes}
+                    type="albums"
+                    addDisplay={addAlbums}
+                    defaltValues={{ userId: id }}
+                    setDisplayChanged={setDisplayChanged}
+                />    
+                {albums&&albums.length > 0 ? (
+                    albums.map((album) => <Album key={album.id} album={album} />)
+                ) : (
+                    <p>No albums found.</p>
+                )}
             </div>
-        </AlbumsContext.Provider>);
+        </AlbumsContext.Provider>
+    );
 }
 
 export default Albums;

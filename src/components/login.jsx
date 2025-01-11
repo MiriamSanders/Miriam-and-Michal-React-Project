@@ -1,9 +1,9 @@
-import React, { useState ,useRef} from "react";
+import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";  
 import '../css/login.css'
 import { userContext } from "./App";
 import { useContext } from "react";
-function Login({ usernameRef }) {
+function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -28,9 +28,6 @@ function Login({ usernameRef }) {
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
-        if (usernameRef) {
-            usernameRef.current = e.target.value; 
-        }
     };
 
     return (

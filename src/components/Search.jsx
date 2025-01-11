@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 import { useSearchParams, useParams } from "react-router-dom";
 import { fetchData } from "../js-files/GeneralRequests";
 import "../css/search.css";
 
-function Search({ type, searchItems, setItems, items, displayChanged,setDisplayChanged }) {
+function Search({ type, searchItems, setItems, items, displayChanged, setDisplayChanged }) {
     const [attribute, setAttribute] = useState("id");
     const [allItems, setAllItems] = useState(items);
     const [firstSearch, setFirstSearch] = useState(false);
@@ -15,7 +14,6 @@ function Search({ type, searchItems, setItems, items, displayChanged,setDisplayC
 
     const searchItemsArray = async (inputValue) => {
         setSearchParams({ [attribute]: inputValue });
-
         if (!firstSearch) {
             setFirstSearch(true);
             setAllItems(items);
@@ -26,8 +24,6 @@ function Search({ type, searchItems, setItems, items, displayChanged,setDisplayC
             setAllItems(fetchedItems);
             setDisplayChanged(false);
         }
-
-        // Filter the items based on the search value
         const filteredItems = allItems?.filter((item) => {
             const value = item[attribute];
             if (typeof value === "boolean") {
@@ -36,9 +32,6 @@ function Search({ type, searchItems, setItems, items, displayChanged,setDisplayC
             }
             return value && value.toString().toLowerCase().includes(inputValue.toLowerCase());
         });
-        
-
-        // Set filtered items or all items if the search field is empty
         setItems(inputValue ? filteredItems : allItems);
     };
 
@@ -61,7 +54,7 @@ function Search({ type, searchItems, setItems, items, displayChanged,setDisplayC
                 type="text"
                 className="search-input"
                 placeholder={`Search by ${attribute}...`}
-                value={searchValue} // Sync the input value with the selected attribute's value
+                value={searchValue}
                 onChange={(e) => searchItemsArray(e.target.value)}
             />
         </div>

@@ -68,7 +68,6 @@ function UserPage() {
         path="/"
         element={<div className="animated-title">Welcome to {userData?.username || "User"}'s Dashboard</div>}
       />
-        {/* <Route path="/" element={<h2>Welcome to {userData?.username || "User"}'s Dashboard</h2>} /> */}
         <Route path="/info" element={<UserData id={userData.id} />} />
         <Route path="/posts" element={<Posts id={userData.id} />} />
         <Route path="/posts/:postid" element={<Posts id={userData.id} />} />

@@ -46,14 +46,14 @@ function Post({ post }) {
                         }
                     }
                     catch (ex) {
-
+                        console.log(ex);
                     }
                 }
             }
 
         })();
     }, [location.pathname])
-    async function navigateToComments() {
+    function navigateToComments() {
         navigate(`/users/${id}/posts/${post.id}/comments`);
     }
     return (
@@ -103,7 +103,7 @@ function Post({ post }) {
                         <h6 className="postTitle">{post.title}</h6>
                         <p className="postData">{post.body}</p>
                         <div className="actions">
-                            {!showComments&&<button onClick={navigateToComments}>Show Comments</button>}
+                            {!showComments && <button onClick={navigateToComments}>Show Comments</button>}
                             <CommentContext.Provider value={{ updateComments, deleteComments }}>
                                 <div> <AddItem keys={attributes} type="comments" addDisplay={addComments} defaltValues={{ email: userData.email, postId: post.id }} />{
                                     showComments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}
