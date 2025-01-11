@@ -62,6 +62,16 @@
   margin-top: 10px;
 }
 
+.actions-btn{
+  display: flex;
+}
+.actions-btn button{
+  position: sticky;
+max-height: 2em;
+
+}
+
+
 .actions .right-actions {
   display: flex;
   gap: 15px;
@@ -209,4 +219,13 @@
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
+}
+
+.comment-container::-webkit-scrollbar {
+  width: 8px; /* רוחב פס הגלילה */
+}
+
+.comment-container::-webkit-scrollbar-track {
+  background:#c01531c4; /* צבע הרקע של פס הגלילה */
+  border-radius: 5px;
 }

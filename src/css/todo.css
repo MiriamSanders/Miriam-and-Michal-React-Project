@@ -40,3 +40,7 @@
     text-decoration: line-through;
     color: #999;
 }
+
+.todo-actions {
+    margin-right: 1.5em;
+}

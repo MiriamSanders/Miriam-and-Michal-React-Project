@@ -1,0 +1,12 @@
+.image-container {
+    position: relative;
+    display: inline-block;
+    margin: 0.2vw;
+}
+
+.overlay-buttons {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
