@@ -43,8 +43,10 @@ function Todo({ todo }) {
          />
          <p className="todo-id">{todo.id}</p>
          <p className={`todo-title ${checked ? 'completed' : ''}`}>{todo.title}</p>
+         <div className="todo-actions">
          <Update item={{ id: todo.id, title: todo.title }} type='todos' updateDisplay={updateTodo} setDisplayChanged={setDisplayChanged} />
          <Delete id={todo.id} type='todos' deleteDisplay={deleteTodo} setDisplayChanged={setDisplayChanged} />
+      </div>
       </div>
    );
 }

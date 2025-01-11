@@ -103,12 +103,14 @@ function Post({ post }) {
                         <h6 className="postTitle">{post.title}</h6>
                         <p className="postData">{post.body}</p>
                         <div className="actions">
+                            <div className="actions-btn">
                             {!showComments&&<button onClick={navigateToComments}>Show Comments</button>}
                             <CommentContext.Provider value={{ updateComments, deleteComments }}>
                                 <div> <AddItem keys={attributes} type="comments" addDisplay={addComments} defaltValues={{ email: userData.email, postId: post.id }} />{
                                     showComments && <div className="comment-container">{comments.map((comment) => { return <Comment key={comment.id} comment={comment}></Comment> })}
                                     </div>
                                 }</div></CommentContext.Provider>
+                                </div>
                         </div>
                     </div>
                 </div>

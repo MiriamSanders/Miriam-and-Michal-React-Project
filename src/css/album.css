@@ -54,10 +54,12 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  flex-grow: 0;
+  max-height: 3.5vw;
 }
 
-.albumContainer button:hover {
-  background-color: #556e76;
+.albumContainer button:hover :not(.close-btn) {
+  background-color: #a0122b;
 }
 
 .albumActions {
@@ -104,18 +106,18 @@
 .photoContainer .close-btn {
   width: fit-content;
   align-self: center;
-  margin-bottom: 10px;
+  margin-top: 5em;
+  margin-left: 17.15em;
   padding: 5px 10px;
-  background-color: #ff6b6b;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  color: rgba(60, 59, 59, 0.613);
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 2.1rem;
+  background-color: transparent;
+  z-index: 99;
 }
 
 .photoContainer .close-btn:hover {
-  background-color: #ff4d4d;
+  color: #a0122b;
 }
 
 .error {
@@ -123,13 +125,26 @@
   font-size: 0.9rem;
   margin-top: 10px;
 }
-.album-actions{
+
+.album-actions {
   display: flex;
   justify-content: space-between;
 }
-button{
+
+button {
   margin: 5px;
 }
-.delete-icon ,.edit-icon {
+
+.delete-icon,
+.edit-icon {
   margin: 5px;
+}
+.photoContainer::-webkit-scrollbar {
+  width: 8px;
+
+}
+.photoContainer::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color:#a0122c4a;
 }

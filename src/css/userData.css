@@ -26,18 +26,15 @@
    }
 
    .user-card::-webkit-scrollbar {
-     width: 6px;
+     width: 4px;
    }
 
    .user-card::-webkit-scrollbar-thumb {
      background: rgba(0, 0, 0, 0.2);
      border-radius: 10px;
+     background-color: #a9707abe;
    }
 
-   .user-card:hover {
-     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-     opacity: 0.9;
-   }
 
    .close-btn {
      position: absolute;
@@ -49,4 +46,7 @@
      font-weight: bold;
      color: black;
      cursor: pointer;
+   }
+   .close-btn:hover {
+     color: #c01532;
    }

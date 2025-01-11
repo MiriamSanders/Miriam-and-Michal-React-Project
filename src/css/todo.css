@@ -41,9 +41,6 @@
     color: #999;
 }
 
-input[type="checkbox"] {
-    transform: scale(1.2);
-    cursor: pointer;
-    accent-color: rgb(192, 21, 50);
-
+.todo-actions {
+    margin-right: 1.5em;
 }
