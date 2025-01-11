@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
-import "../css/todo.css";
-import { DisplayContext } from "./todos";
+import '../css/todo.css';
+import { DisplayContext } from "./Todos"
+
 import Update from "./Update";
 import Delete from "./Delete";
 
