@@ -13,7 +13,7 @@ export const PhotoContext = createContext();
 function Album({ album }) {
     const [photos, setPhotos, updatePhotos, deletePhotos, addPhotos] = useHandleDisplay([]);
     const [showPhotos, setShowPhotos] = useState(false);
-    const [noMorePhotos, setNoMorePhotos] = useState(null);
+    const [ noMorePhotos,  setNoMorePhotos] = useState(null);
     const [loading, setLoading] = useState(false);
     const [photoPage, setPhotoPage] = useState(1);
     const { updateAlbums, deleteAlbums, setDisplayChanged } = useContext(AlbumsContext);
