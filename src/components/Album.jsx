@@ -13,13 +13,13 @@ export const PhotoContext = createContext();
 function Album({ album }) {
     const [photos, setPhotos, updatePhotos, deletePhotos, addPhotos] = useHandleDisplay([]);
     const [showPhotos, setShowPhotos] = useState(false);
-    const [noMorePhotos,  setNoMorePhotos] = useState(null);
+    const [noMorePhotos, setNoMorePhotos] = useState(null);
     const [loading, setLoading] = useState(false);
     const [photoPage, setPhotoPage] = useState(1);
     const { updateAlbums, deleteAlbums, setDisplayChanged } = useContext(AlbumsContext);
     const { id } = useParams();
     const navigate = useNavigate();
-const {handleError}= useHandleError();
+    const { handleError } = useHandleError();
     const attributes = ["title", "url", "thumbnailUrl"];
 
     const openAlbumPhotos = async () => {
@@ -41,7 +41,7 @@ const {handleError}= useHandleError();
                 setNoMorePhotos("No more photos to load.");
             }
         } catch (err) {
-            handleError("getError",err);
+            handleError("getError", err);
         } finally {
             setLoading(false);
             navigate(`/users/${id}/albums/${album.id}/photos`);
@@ -62,7 +62,7 @@ const {handleError}= useHandleError();
             <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}>
                 <div className="album-actions">
                     <Update
-                        item={album}
+                        item={{id:album.id,title:album.title}}
                         type="albums"
                         updateDisplay={updateAlbums}
                         setDisplayChanged={setDisplayChanged}

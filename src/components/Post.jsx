@@ -1,8 +1,7 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams, useLocation } from "react-router-dom";
 import { fetchData } from "../js-files/GeneralRequests";
 import '../css/post.css';
-import { useParams, useLocation } from "react-router-dom";
 import { PostsContext } from "./Posts";
 import { userContext } from "./App";
 import Update from "./Update";
@@ -20,9 +19,11 @@ function Post({ post }) {
     const [comments, setComments, updateComments, deleteComments, addComments] = useHandleDisplay([]);
     const { updatePosts, deletePosts, setDisplayChanged } = useContext(PostsContext);
     const { userData } = useContext(userContext);
-    const attributes = ["name", "body"];
     const location = useLocation();
     const { handleError } = useHandleError();
+    
+    const attributes = ["name", "body"];
+    
     function showPostFunction() {
         setShowPost(true);
         navigate(`/users/${id}/posts/${post.id}`);

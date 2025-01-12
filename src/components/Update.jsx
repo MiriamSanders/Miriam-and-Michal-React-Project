@@ -2,10 +2,10 @@ import React, { useState, useContext } from "react";
 import { FaPen } from "react-icons/fa";
 import "../css/Update.css"
 import useHandleError from "./useHandleError";
-function Update({ item, type, updateDisplay, setDisplayChanged = () => { }  }) {
+function Update({ item, type, updateDisplay, setDisplayChanged = () => { } }) {
     const [showUpdateDetails, setShowUpdateDetails] = useState(false);
     const [updatedItem, setUpdatedItem] = useState(item);
-const {handleError}=useHandleError();
+    const { handleError } = useHandleError();
     const handleInputChange = (key, value) => {
         setUpdatedItem((prevItem) => ({
             ...prevItem,
@@ -28,7 +28,7 @@ const {handleError}=useHandleError();
                 setDisplayChanged(true);
             }
         } catch (ex) {
-            handleError("updateError",ex);
+            handleError("updateError", ex);
         }
     }
 
@@ -47,7 +47,7 @@ const {handleError}=useHandleError();
                         {Object.keys(updatedItem).map(
                             (key) =>
                                 key !== "id" &&
-                                key !== "userId" && (
+                                (
                                     <div key={key} className="update-div" >
                                         <label htmlFor={key} style={{ display: "block", fontWeight: "bold" }} >
                                             {key}:

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import Album from "./Album";
 import AddItem from "./AddItem";
 import Search from "./Search";
@@ -10,12 +10,12 @@ export const AlbumsContext = createContext();
 function Albums({ id }) {
     const [albums, setAlbums, updateAlbums, deleteAlbums, addAlbums] = useHandleDisplay([]);
     const [displayChanged, setDisplayChanged] = useState(false);
-const {handleError}=useHandleError();
+    const { handleError } = useHandleError();
     const albumAttributes = ["title"];
 
     useEffect(() => {
         const fetchAlbums = async () => {
-            const fetchedAlbums = await fetchData("albums","userId", id,handleError);
+            const fetchedAlbums = await fetchData("albums", "userId", id, handleError);
             setAlbums(fetchedAlbums);
         };
         fetchAlbums();
@@ -38,8 +38,8 @@ const {handleError}=useHandleError();
                     addDisplay={addAlbums}
                     defaltValues={{ userId: id }}
                     setDisplayChanged={setDisplayChanged}
-                />    
-                {albums&&albums.length > 0 ? (
+                />
+                {albums && albums.length > 0 ? (
                     albums.map((album) => <Album key={album.id} album={album} />)
                 ) : (
                     <p>No albums found.</p>

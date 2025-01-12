@@ -1,5 +1,5 @@
-import React, { useRef, createContext, useState } from "react";
-import { BrowserRouter as Router, Routes, Navigate, Route} from "react-router-dom";
+import React, { createContext, useState } from "react";
+import { BrowserRouter as Router, Routes, Navigate, Route } from "react-router-dom";
 import Login from "./login";
 import Signup from "./Signup";
 import UserPage from './UserPage';
@@ -12,9 +12,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/login" element={<Login  />} />
-        <Route path="/register" element={<Signup  />} />
-        <Route path="/home/*" element={<UserPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Signup />} />
+        <Route path="/home" element={<UserPage />} />
         <Route path="/users/:id/*" element={<UserPage />} />
         <Route path="*" element={<h1>404: Page Not Found</h1>} />
       </Routes>

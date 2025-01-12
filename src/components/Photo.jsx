@@ -9,7 +9,7 @@ function Photo({ photo }) {
         <div className="image-container">
             <img src={photo.thumbnailUrl} alt={photo.title} />
             <div className="overlay-buttons">
-                <Update item={photo} type='photos' updateDisplay={updatePhotos} />
+                <Update item={{id:photo.id,title:photo.title,url:photo.url,thumbnailUrl:photo.thumbnailUrl}} type='photos' updateDisplay={updatePhotos} />
                 <Delete id={photo.id} type='photos' deleteDisplay={deletePhotos} />
             </div>
         </div>

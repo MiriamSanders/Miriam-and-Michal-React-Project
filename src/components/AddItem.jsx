@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import "../css/AddItem.css";
 import useHandleError from "./useHandleError";
 function AddItem({ keys, type, addDisplay, defaltValues, setDisplayChanged = () => { } }) {
-    const { id } = useParams();
     const [showAddItem, setShowAddItem] = useState(false);
     const [item, setItem] = useState(defaltValues);
     const {handleError}=useHandleError();
