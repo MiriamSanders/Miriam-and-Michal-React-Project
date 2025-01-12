@@ -42,6 +42,7 @@ function Album({ album }) {
             }
         } catch (err) {
             handleError("getError", err);
+            handleError("getError", err);
         } finally {
             setLoading(false);
             navigate(`/users/${id}/albums/${album.id}/photos`);
@@ -86,14 +87,16 @@ function Album({ album }) {
                 </div>
 
                 {showPhotos && (
-                    <div className="photoContainer">
-                        <button className="close-btn" onClick={closePhotos}>
-                            ×
-                        </button>
-                        <div className="photos-grid">
-                            {photos.map((item) => (
-                                <Photo key={item.id} photo={item} />
-                            ))}
+                    <div className="overlay">
+                        <div className="photoContainer modal">
+                            <button className="close-btn" onClick={closePhotos}>
+                                ×
+                            </button>
+                            <div className="photos-grid">
+                                {photos.map((item) => (
+                                    <Photo key={item.id} photo={item} />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 )}

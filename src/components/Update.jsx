@@ -12,11 +12,12 @@ function Update({ item, type, updateDisplay, setDisplayChanged = () => { } }) {
             [key]: value,
         }));
     };
+
     async function updateItem() {
         const updatedData = { ...item, ...updatedItem };
         try {
             let response = await fetch(`http://localhost:3000/${type}/${item.id}`, {
-                method: "PATCH",
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -48,22 +49,31 @@ function Update({ item, type, updateDisplay, setDisplayChanged = () => { } }) {
                             (key) =>
                                 key !== "id" &&
                                 (
-                                    <div key={key} className="update-div" >
-                                        <label htmlFor={key} style={{ display: "block", fontWeight: "bold" }} >
+                                    <div key={key} style={{ marginBottom: "10px" }}>
+                                        <label
+                                            htmlFor={key}
+                                            style={{ display: "block", fontWeight: "bold" }}
+                                        >
                                             {key}:
                                         </label>
-                                        <input className="update-input"
+                                        <input
                                             id={key}
                                             value={updatedItem[key]}
                                             placeholder={key}
                                             onChange={(e) =>
                                                 handleInputChange(key, e.target.value)
                                             }
+                                            style={{
+                                                width: "100%",
+                                                padding: "8px",
+                                                border: "1px solid #ccc",
+                                                borderRadius: "4px",
+                                            }}
                                         />
                                     </div>
                                 )
                         )}
-                        <div >
+                        <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
                             <button onClick={updateItem} className="btn-primary">
                                 Update
                             </button>
