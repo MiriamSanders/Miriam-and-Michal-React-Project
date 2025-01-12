@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Routes, Route, Link, useParams, useNavigate ,useLocation} from "react-router-dom";
+import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import UserData from "./UserData";
 import Posts from "./Posts";
 import Todos from "./todos";
@@ -10,7 +10,6 @@ import { userContext } from "./App";
 function UserPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const location =useLocation();
   const { userData, setUserData } = useContext(userContext);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -19,7 +18,7 @@ function UserPage() {
     if (id && userData?.id !== id) {
       navigate("/login", { replace: true });
     }
-  }, [id, userData, location]);
+  }, [id, userData, navigate]);
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -67,8 +66,7 @@ function UserPage() {
 
       <Routes><Route
         path="/"
-        element={<div><div className="animated-title">Welcome to {userData?.username || "User"}'s Dashboard</div><h1 className="welcome-message">Welcome to our website!, your one-stop platform for managing todos, sharing posts, exploring albums, engaging with comments, and viewing user data! Whether you're staying organized, expressing your thoughts, or browsing memories, we've got you covered.</h1></div>}
-      />
+        element={<div><div className="animated-title">Welcome to {userData?.username || "User"}'s Dashboard</div><h1 className="welcome-message">Welcome to our website!, your one-stop platform for managing todos, sharing posts, exploring albums, engaging with comments, and viewing user data! Whether you're staying organized, expressing your thoughts, or browsing memories, we've got you covered.</h1></div>} />
         <Route path="/info" element={<UserData id={userData.id} />} />
         <Route path="/posts" element={<Posts id={userData.id} />} />
         <Route path="/posts/:postid" element={<Posts id={userData.id} />} />

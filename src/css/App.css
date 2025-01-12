@@ -1,4 +1,4 @@
- #root {
+#root {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -61,7 +61,7 @@ nav a:hover {
 .right-nav {
   display: flex;
   align-items: center;
-  margin-right: 30px;
+  margin-right: 4vw;
   gap: 20px;
 }
 
