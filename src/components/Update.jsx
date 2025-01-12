@@ -15,7 +15,7 @@ function Update({ item, type, updateDisplay, setDisplayChanged }) {
         const updatedData = { ...item, ...updatedItem };
         try {
             let response = await fetch(`http://localhost:3000/${type}/${item.id}`, {
-                method: "PUT",
+                method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
                 },

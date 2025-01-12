@@ -15,7 +15,7 @@ function Comment({ comment }) {
             <p className="comment-name">{comment.name}</p>
             <p className="comment-body">{comment.body}</p>
             {userData.email == comment.email && <div className="comment-actions">
-                <Update item={comment} type="comments" updateDisplay={updateComments} />
+                <Update item={comment}  type="comments" updateDisplay={updateComments} />
                 <Delete id={comment.id} type="comments" deleteDisplay={deleteComments} />
             </div>}
         </div>
