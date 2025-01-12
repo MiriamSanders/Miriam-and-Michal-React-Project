@@ -1,40 +1,26 @@
 import React, { useState, useEffect } from "react";
+import { fetchData } from "../js-files/GeneralRequests";
+import useHandleError from "./useHandleError";
 import "../css/userData.css";
 
 function UserData({ id, onClose }) {
   const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const { handleError } = useHandleError();
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/users/?id=${id}`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-        if (result.length > 0) {
-          setUser(result[0]);
-        } else {
-          throw new Error("No user found with that ID");
-        }
-      } catch (error) {
-        setError(error.message);
-      } finally {
+    const fetchUserData = async () => {
+      let response = await fetchData("users", "id", id, handleError)
+      if (response) {
+        setUser(response[0]);
         setLoading(false);
       }
-    };
 
-    fetchData();
-  }, [id]);
+    }
+    fetchUserData();
+  }, [id])
 
   if (loading) {
     return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
   }
 
   return (

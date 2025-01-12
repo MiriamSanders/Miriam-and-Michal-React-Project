@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import "../css/AddItem.css";
-
+import useHandleError from "./useHandleError";
 function AddItem({ keys, type, addDisplay, defaltValues, setDisplayChanged = () => { } }) {
     const { id } = useParams();
     const [showAddItem, setShowAddItem] = useState(false);
     const [item, setItem] = useState(defaltValues);
-
+    const {handleError}=useHandleError();
     const handleInputChange = (key, value) => {
         setItem((prevItem) => ({ ...prevItem, [key]: value }));
     };
@@ -36,8 +36,7 @@ function AddItem({ keys, type, addDisplay, defaltValues, setDisplayChanged = () 
             setItem(defaltValues);
             setShowAddItem(false);
         } catch (error) {
-            console.error("Error adding item:", error);
-            alert("An error occurred. Please try again.");
+           handleError(addError,error);
         }
     };
 

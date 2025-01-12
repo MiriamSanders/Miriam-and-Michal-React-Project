@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import '../css/todo.css';
 import { DisplayContext } from "./todos"
-
+import useHandleError from "./useHandleError";
 import Update from "./Update";
-import Delete from "./Delete";
+import Delete from "./DeleteItem";
 
 function Todo({ todo }) {
     const [checked, setChecked] = useState(todo.completed);
     const { updateTodo, deleteTodo, setDisplayChanged } = useContext(DisplayContext);
     const [error, setError] = useState(null);
-
+const {handleError}=useHandleError();
     const handleCheckboxChange = async () => {
         const newCheckedState = !checked;
         setChecked(newCheckedState); // Optimistic UI update
@@ -31,8 +31,7 @@ function Todo({ todo }) {
             }
         } catch (err) {
             setChecked(!newCheckedState); // Revert state if API call fails
-            setError(err.message);
-            console.error("Error updating todo:", err.message);
+            handleError("getError",err);
         }
     };
 

@@ -4,22 +4,22 @@ import { AlbumsContext } from "./Albums";
 import useHandleDisplay from "./useHandleDisplay";
 import Photo from "./Photo";
 import Update from "./Update";
-import Delete from "./Delete";
+import Delete from "./DeleteItem";
 import AddItem from "./AddItem";
 import "../css/album.css";
-
+import useHandleError from "./useHandleError";
 export const PhotoContext = createContext();
 
 function Album({ album }) {
     const [photos, setPhotos, updatePhotos, deletePhotos, addPhotos] = useHandleDisplay([]);
     const [showPhotos, setShowPhotos] = useState(false);
-    const [error, setError] = useState(null);
+    const [ noMorePhotos,  setNoMorePhotos] = useState(null);
     const [loading, setLoading] = useState(false);
     const [photoPage, setPhotoPage] = useState(1);
     const { updateAlbums, deleteAlbums, setDisplayChanged } = useContext(AlbumsContext);
     const { id } = useParams();
     const navigate = useNavigate();
-
+const {handleError}= useHandleError();
     const attributes = ["title", "url", "thumbnailUrl"];
 
     const openAlbumPhotos = async () => {
@@ -38,10 +38,10 @@ function Album({ album }) {
                 setPhotoPage((prevPage) => prevPage + 1);
                 setShowPhotos(true);
             } else {
-                setError("No more photos to load.");
+                setNoMorePhotos("No more photos to load.");
             }
         } catch (err) {
-            setError(err.message || "An unexpected error occurred.");
+            handleError("getError",err);
         } finally {
             setLoading(false);
             navigate(`/users/${id}/albums/${album.id}/photos`);
@@ -50,7 +50,6 @@ function Album({ album }) {
 
     const closePhotos = () => {
         setShowPhotos(false);
-        setPhotoPage(1);
         navigate(`/users/${id}/albums`);
     };
 
@@ -58,7 +57,7 @@ function Album({ album }) {
         <div className="albumContainer">
             <p className="albumId">{album.id}</p>
             <p className="albumTitle">{album.title}</p>
-            {error && <div className="error">Error: {error}</div>}
+            {noMorePhotos && <div className="error">{noMorePhotos}</div>}
 
             <PhotoContext.Provider value={{ updatePhotos, deletePhotos }}>
                 <div className="album-actions">
@@ -76,7 +75,7 @@ function Album({ album }) {
                         dependent="photos"
                     />
                     <button onClick={openAlbumPhotos} disabled={loading}>
-                        {photoPage === 1 ? "Show Photos" : "Load More Photos"}
+                        {photoPage === 1 || !showPhotos ? "Show Photos" : "Load More Photos"}
                     </button>
                     <AddItem
                         keys={attributes}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSearchParams, useParams } from "react-router-dom";
 import { fetchData } from "../js-files/GeneralRequests";
+import useHandleError from "./useHandleError";
 import "../css/search.css";
 
 function Search({ type, searchItems, setItems, items, displayChanged, setDisplayChanged }) {
@@ -9,7 +10,7 @@ function Search({ type, searchItems, setItems, items, displayChanged, setDisplay
     const [firstSearch, setFirstSearch] = useState(false);
     const { id } = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
-
+    const {handleError}=useHandleError();
     const searchValue = searchParams.get(attribute) || "";
 
     const searchItemsArray = async (inputValue) => {
@@ -20,7 +21,7 @@ function Search({ type, searchItems, setItems, items, displayChanged, setDisplay
         }
 
         if (displayChanged) {
-            const fetchedItems = await fetchData(type, id);
+            const fetchedItems = await fetchData(type,"userId", id,handleError);
             setAllItems(fetchedItems);
             setDisplayChanged(false);
         }

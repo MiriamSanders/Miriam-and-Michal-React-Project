@@ -1,14 +1,16 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchData } from "../js-files/GeneralRequests";
 import '../css/post.css';
 import { useParams, useLocation } from "react-router-dom";
 import { PostsContext } from "./Posts";
 import { userContext } from "./App";
 import Update from "./Update";
 import Comment from "./Comment";
-import Delete from "./Delete";
+import Delete from "./DeleteItem";
 import AddItem from "./AddItem";
 import useHandleDisplay from "./useHandleDisplay";
+import useHandleError from "./useHandleError";
 export const CommentContext = createContext();
 function Post({ post }) {
     const navigate = useNavigate();
@@ -20,6 +22,7 @@ function Post({ post }) {
     const { userData } = useContext(userContext);
     const attributes = ["name", "body"];
     const location = useLocation();
+    const { handleError } = useHandleError();
     function showPostFunction() {
         setShowPost(true);
         navigate(`/users/${id}/posts/${post.id}`);
@@ -32,27 +35,16 @@ function Post({ post }) {
                     setShowComments(true);
                 }
                 else {
-                    try {
-                        const response = await fetch(
-                            `http://localhost:3000/comments/?postId=${post.id}`
-                        );
-                        if (!response.ok) {
-                            throw new Error("Network response was not ok");
-                        }
-                        const result = await response.json();
-                        if (result.length > 0) {
-                            setComments(result);
-                            setShowComments(true);
-                        }
-                    }
-                    catch (ex) {
-                        console.log(ex);
+                    let response = await fetchData("comments", "postId", post.id, handleError);
+                    if (response) {
+                        setComments(response);
+                        setShowComments(true);
                     }
                 }
             }
 
         })();
-    }, [location.pathname])
+    }, [location.pathname, comments])
     function navigateToComments() {
         navigate(`/users/${id}/posts/${post.id}/comments`);
     }

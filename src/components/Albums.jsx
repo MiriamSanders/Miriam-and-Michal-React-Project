@@ -4,18 +4,18 @@ import AddItem from "./AddItem";
 import Search from "./Search";
 import { fetchData } from "../js-files/GeneralRequests";
 import useHandleDisplay from "./useHandleDisplay";
-
+import useHandleError from "./useHandleError";
 export const AlbumsContext = createContext();
 
 function Albums({ id }) {
     const [albums, setAlbums, updateAlbums, deleteAlbums, addAlbums] = useHandleDisplay([]);
     const [displayChanged, setDisplayChanged] = useState(false);
-
+const {handleError}=useHandleError();
     const albumAttributes = ["title"];
 
     useEffect(() => {
         const fetchAlbums = async () => {
-            const fetchedAlbums = await fetchData("albums", id);
+            const fetchedAlbums = await fetchData("albums","userId", id,handleError);
             setAlbums(fetchedAlbums);
         };
         fetchAlbums();

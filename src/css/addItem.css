@@ -9,7 +9,7 @@
 }
 
 .add-item-button:hover {
-    background-color: #c01532;
+    background-color: #a0122b;
 }
 
 .add-item-container {
@@ -68,7 +68,7 @@
 }
 
 .send-button:hover {
-    background-color: #c01532;
+    background-color:  #a0122b;
 }
 
 .cancel-button {
@@ -77,5 +77,5 @@
 }
 
 .cancel-button:hover {
-    background-color: #c01532;
+    background-color:  #a0122b;
 }

@@ -2,9 +2,13 @@ import React, { useState } from "react";
 
 export default function useHandleDisplay(initialItems = null) {
     const [items, setItems] = useState(initialItems);
-    const updateItem = (updatedItem) => {
+    const updateItem = (updatedFields) => {
         setItems((prevItems) =>
-            prevItems.map((item) => (item.id === updatedItem.id ? updatedItem : item))
+            prevItems.map((item) =>
+                item.id === updatedFields.id
+                    ? { ...item, ...updatedFields }
+                    : item
+            )
         );
     };
 

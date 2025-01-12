@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
+import { Routes, Route, Link, useParams, useNavigate ,useLocation} from "react-router-dom";
 import UserData from "./UserData";
 import Posts from "./Posts";
 import Todos from "./todos";
@@ -10,6 +10,7 @@ import { userContext } from "./App";
 function UserPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location =useLocation();
   const { userData, setUserData } = useContext(userContext);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -18,7 +19,7 @@ function UserPage() {
     if (id && userData?.id !== id) {
       navigate("/login", { replace: true });
     }
-  }, [id, userData, navigate]);
+  }, [id, userData, location]);
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);

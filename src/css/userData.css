@@ -12,7 +12,7 @@
    }
 
    .user-card {
-     background-color: white;
+     background-color: rgb(255, 255, 255);
      padding: 20px;
      border-radius: 8px;
      width: 420px;
@@ -20,7 +20,6 @@
      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.238);
      position: relative;
      transition: box-shadow 0.3s ease, opacity 0.3s ease;
-     opacity: 0.75;
      font-size: 18px;
      overflow-y: auto;
    }

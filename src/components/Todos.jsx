@@ -4,17 +4,19 @@ import AddItem from "./AddItem";
 import Search from "./Search";
 import { fetchData } from "../js-files/GeneralRequests";
 import useHandleDisplay from "./useHandleDisplay";
+import useHandleError from "./useHandleError";
 import "../css/sort.css"
 export const DisplayContext = createContext();
 function Todos({ id }) {
     const [todos, setTodos, updateTodo, deleteTodo, addTodo] = useHandleDisplay(null);
     const [displayChanged, setDisplayChanged] = useState(false);
+    const {handleError}=useHandleError();
     let todoAttributes = ['title'];
     let sortAttributes = ['id', 'title', 'completed', 'random'];
-
+   
     useEffect(() => {
         const fetchTodos = async () => {
-            setTodos(await fetchData('todos', id));
+            setTodos(await fetchData('todos',"userId", id,handleError));
         };
         fetchTodos();
     }, [id]);

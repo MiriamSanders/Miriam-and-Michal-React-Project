@@ -1,8 +1,9 @@
 import React, { useContext } from "react"
 import { FaTrash } from "react-icons/fa";
 import '../css/Delete.css'
-
-function Delete({ id, type, deleteDisplay, setDisplayChanged, dependent }) {
+import useHandleError from "./useHandleError";
+function Delete({ id, type, deleteDisplay, setDisplayChanged = () => { } , dependent }) {
+    const {handleError}=useHandleError();
     async function deleteItem() {
         try {
             if (dependent) {
@@ -37,8 +38,7 @@ function Delete({ id, type, deleteDisplay, setDisplayChanged, dependent }) {
             }
         }
         catch (error) {
-            console.log(error);
-
+            handleError("deleteError",error);
         }
     }
     return (<>
