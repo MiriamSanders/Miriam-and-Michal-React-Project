@@ -2,7 +2,6 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  /* width: max-content; */
 }
 
 body {
@@ -32,7 +31,7 @@ nav a:hover {
 
  .nav-container {
   position: fixed;
-  top: 40px;
+  top: 5.5vh;
   left: 0;
   right: 0;
   width: 100%;

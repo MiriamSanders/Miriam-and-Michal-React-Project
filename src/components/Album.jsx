@@ -13,13 +13,13 @@ export const PhotoContext = createContext();
 function Album({ album }) {
     const [photos, setPhotos, updatePhotos, deletePhotos, addPhotos] = useHandleDisplay([]);
     const [showPhotos, setShowPhotos] = useState(false);
-    const [ noMorePhotos,  setNoMorePhotos] = useState(null);
+    const [noMorePhotos, setNoMorePhotos] = useState(null);
     const [loading, setLoading] = useState(false);
     const [photoPage, setPhotoPage] = useState(1);
     const { updateAlbums, deleteAlbums, setDisplayChanged } = useContext(AlbumsContext);
     const { id } = useParams();
     const navigate = useNavigate();
-const {handleError}= useHandleError();
+    const { handleError } = useHandleError();
     const attributes = ["title", "url", "thumbnailUrl"];
 
     const openAlbumPhotos = async () => {
@@ -41,7 +41,7 @@ const {handleError}= useHandleError();
                 setNoMorePhotos("No more photos to load.");
             }
         } catch (err) {
-            handleError("getError",err);
+            handleError("getError", err);
         } finally {
             setLoading(false);
             navigate(`/users/${id}/albums/${album.id}/photos`);
@@ -86,14 +86,16 @@ const {handleError}= useHandleError();
                 </div>
 
                 {showPhotos && (
-                    <div className="photoContainer">
-                        <button className="close-btn" onClick={closePhotos}>
-                            ×
-                        </button>
-                        <div className="photos-grid">
-                            {photos.map((item) => (
-                                <Photo key={item.id} photo={item} />
-                            ))}
+                    <div className="overlay">
+                        <div className="photoContainer modal">
+                            <button className="close-btn" onClick={closePhotos}>
+                                ×
+                            </button>
+                            <div className="photos-grid">
+                                {photos.map((item) => (
+                                    <Photo key={item.id} photo={item} />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 )}

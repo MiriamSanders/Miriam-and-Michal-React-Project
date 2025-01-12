@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2;
 }
 .edit-icon {
     cursor: pointer;
@@ -23,10 +23,13 @@
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 9px rgba(0, 0, 0, 0.2); */
+    box-shadow: 4px 4px 10px 2px rgba(123, 123, 123, 0.356);
     max-width: 500px;
     width: 90%;
     text-align: center;
+    z-index: 1000;
+    border: #80172959 2px solid;
 }
 
 

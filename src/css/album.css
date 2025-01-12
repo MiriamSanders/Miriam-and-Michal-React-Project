@@ -58,10 +58,9 @@
   max-height: 2.6vw;
 }
 
-.albumContainer button:hover :not(.close-btn) {
+.albumContainer button:hover {
   background-color: #a0122b;
 }
-
 .albumActions {
   position: absolute;
   bottom: 40px;
@@ -95,6 +94,7 @@
   padding: 10px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 15vh;
 }
 
 .photos-grid {
@@ -106,8 +106,8 @@
 .photoContainer .close-btn {
   width: fit-content;
   align-self: center;
-  margin-top: 5em;
-  margin-left: 17.15em;
+  margin-top: 0.5em;
+  margin-left: 14em;
   padding: 5px 10px;
   color: rgba(60, 59, 59, 0.613);
   cursor: pointer;
@@ -118,6 +118,7 @@
 
 .photoContainer .close-btn:hover {
   color: #a0122b;
+  background-color: transparent !important;
 }
 
 .error {
