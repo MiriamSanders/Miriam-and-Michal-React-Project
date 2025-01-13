@@ -9,9 +9,8 @@ function Login() {
     const {setUserData}= useContext(userContext);
     async function checkIFUserExists() {
         let response = await fetch(`http://localhost:3000/users/?username=${username}`);
-        if (response.status >= 200 && response.status < 300) {
-            const user = await response.json();
-
+        const user = await response.json();
+        if (response.ok &&user[0]) {
             if (user.length > 0 && user[0].website === password) {
                 setUserData(user[0]);
                 localStorage.setItem("currentUser",JSON.stringify(user[0])
