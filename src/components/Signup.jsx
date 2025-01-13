@@ -79,8 +79,9 @@ function Signup() {
 
       if (response.ok) {
         const createdUser = await response.json();
-        setUserData(createdUser);
-        localStorage.setItem("currentUser", JSON.stringify(createdUser));
+        const { website, ...userWithoutPassword } = createdUser;
+        setUserData(userWithoutPassword);
+        localStorage.setItem("currentUser", JSON.stringify(userWithoutPassword));
         navigate(`/home`);
       } else {
         alert("Error creating user. Please try again.");

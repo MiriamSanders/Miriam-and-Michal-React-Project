@@ -12,9 +12,9 @@ function Login() {
         const user = await response.json();
         if (response.ok &&user[0]) {
             if (user.length > 0 && user[0].website === password) {
-                setUserData(user[0]);
-                localStorage.setItem("currentUser",JSON.stringify(user[0])
-                );
+                const { website, ...userWithoutPassword } = user[0];
+                setUserData(userWithoutPassword);
+                localStorage.setItem("currentUser", JSON.stringify(userWithoutPassword));
                 navigate(`/home`);
             } else {
                 alert('Incorrect password');
